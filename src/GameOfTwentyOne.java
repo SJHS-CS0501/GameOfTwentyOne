@@ -34,7 +34,7 @@ public class GameOfTwentyOne {
 		// Die for getting random numbers
 		Die rollMe = new Die(6);
 		
-		System.out.println("Welcome to Dice!Blackjack.\nGet the highest score under 21.\n...\n\n");
+		System.out.println("Welcome to Dice!Blackjack.\nGet the highest score less than or equal to 21.\n...\n\n");
 		
 		/*
 		 * This would be a lot simpler without using the 
