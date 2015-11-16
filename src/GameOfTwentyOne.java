@@ -3,7 +3,7 @@
  */
 
 /**
- * @author woytek
+ * @author Jack Protivnak
  *
  */
 public class GameOfTwentyOne {
