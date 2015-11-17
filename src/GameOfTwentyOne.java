@@ -15,26 +15,33 @@ public class GameOfTwentyOne {
 	public static void main(String[] args) {
 		
 		Scanner keyboard = new Scanner( System.in );
-		Die firstRoll = new Die(6);
-		Die secondRoll = new Die(6);
-		String answer;
-		int userTotal;
-		int compTotal;
-		int valueU;
-		int valueC;
+		Die roll = new Die(6);
+		int userTotal = 0;
+		int compTotal = 0;
+		int result;
+		
 		
 		JOptionPane.showMessageDialog( null, "Let's play a game of blackjack--with dice!\nI just rolled, your turn!" );
 		
-		valueU = new Die();
-		valueC = new Die(numSides);
-		
 		do {
-			userTotal += valueU;
-			compTotal += valueC;
-			System.out.print( "Do you want to roll again? Type 'Y' for yes, or 'N' for no." );
-			answer = keyboard.nextLine();
+			roll.roll(); //first die
+			compTotal += roll.getValue();
+			roll.roll(); //second die
+			compTotal += roll.getValue();
+			
+			roll.roll(); //first die
+			userTotal += roll.getValue();
+			JOptionPane.showMessageDialog( null, "You rolled an " + roll.getValue() + "!" );
+			
+			roll.roll(); //second die
+			userTotal += roll.getValue();
+			JOptionPane.showMessageDialog( null, "You rolled an " + roll.getValue() + "!" );
+			
+			result = JOptionPane.showConfirmDialog( null, "Do you want to roll again? Type 'Y' for yes, or 'N' for no." ,
+												"roll?" , JOptionPane.YES_NO_OPTION);
+			
 		}
-		while(answer.equalsIgnoreCase( "y" ));
+		while(result == JOptionPane.YES_OPTION);
 		
 		JOptionPane.showMessageDialog( null, "My total was " + compTotal + "!");
 		
