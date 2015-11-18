@@ -32,31 +32,51 @@ public class GameOfTwentyOne {
 	public static void response() {
 		String userInput = null;
 		int userTotal = 0;
-		Scanner keyboard = new Scanner(System.in);
+		int compTotal = 0;
+		String yes = "y";
 		Die dieRoll1 = new Die(6);
 		Die dieRoll2 = new Die(6);
-		String dog = "y";
-		dieRoll1.roll();
-		userTotal += dieRoll1.getValue();
-		dieRoll1.roll();
-		userTotal += dieRoll1.getValue();
+		Scanner keyboard = new Scanner(System.in);
 		
-		System.out.println( "Please enter 'y' if you'd like to roll the dice or -1 to exit: " );
-		userInput = keyboard.nextLine();
 		
 		do {
-			System.out.println( "Please enter 'y' if you'd like to roll the dice or -1 to exit: " );
-			userInput = keyboard.nextLine();
-			
-			if (userInput.matches("^[Yy]$") ) {
-				System.out.println( "Your total is: " + userTotal );
-			} else if (userInput.matches("^-1$") ) {
-				System.out.println( "Your total is: " + userTotal + "\n Thank you for playing!" );
-			} else {
-				System.out.println( "Invalid character entered. Please try again." );
-			}
-		} while( userInput.equalsIgnoreCase(dog))
+			if (userTotal <= 21) {
+				System.out.println( "Please enter 'y' if you'd like to roll the dice or -1 to exit: " );
+				userInput = keyboard.nextLine();
+				if (userInput.matches("^[Yy]$") ) {
+					dieRoll1.roll();
+					dieRoll2.roll();
+					compTotal += dieRoll2.getValue() + dieRoll1.getValue();
+					dieRoll1.roll();
+					dieRoll2.roll();
+					userTotal += dieRoll1.getValue();
+					System.out.
+					if (userTotal > 21) {
+						break;
+					}
+				}
+				} else if (userInput.matches("^-1$") ) {
+					break;
+				} else {
+					System.out.println( "Invalid character entered. Please try again." );
+				}
+		} while( userInput.equalsIgnoreCase(yes));
 		
+		if (userTotal > 21 && compTotal > 21) {
+			System.out.println( "Everyone LOOSES!!!\nComputer Total: " + compTotal + "\nYour total: " + userTotal );
+			System.exit(0);
+		} else if ( userTotal <= 21 && userTotal > compTotal) {
+			System.out.println( "You win!\nComputer Total: " + compTotal + "\nYour total: " + userTotal);
+			System.exit(0);
+		} else if ( compTotal <= 21 && compTotal > userTotal ) {
+			System.out.println( "COMPUTER WINS!!!!!!! YOU LOOSE\nComputer Total: " + compTotal + "\nYour total: " + userTotal);
+			System.exit(0);
+		} else if ( compTotal == userTotal ) {
+			System.out.println( "You savage... you got the same total as the computer.\nComputer Total: " + compTotal + "\nYour total: " + userTotal);
+			System.exit(0);
+		} else {
+			System.out.println( "Your total is: " + userTotal );
+		}
 		
 	
 	}
