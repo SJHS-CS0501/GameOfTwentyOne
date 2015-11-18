@@ -45,28 +45,23 @@ public class GameOfTwentyOne {
 		
 		JOptionPane.showMessageDialog( null, "My total was " + compTotal + "!" );
 		
-		//when both player's totals are under 21, but computer's total is closer to 21
-		if(compTotal > userTotal && compTotal <= 21) {
+		if(compTotal <= 21 && compTotal > userTotal) {
+			//when both player's totals are under 21, but computer's total is closer to 21
 			JOptionPane.showMessageDialog( null, "I win!" );
-		}
-		
-		//when user's total is over 21, but computer's total is under 21
-		if(userTotal > 21 && compTotal <= 21) {
-			JOptionPane.showMessageDialog( null, "I win because you went over!" );
-		}
-		
-		//when both player's totals are under 21, but user's total is closer to 21
-		if(userTotal > compTotal && userTotal <= 21) {
+		} else if(userTotal <= 21 && userTotal > compTotal) {
+			//when both player's totals are under 21, but user's total is closer to 21  	
 			JOptionPane.showMessageDialog( null, "Yay! You win!" );
-		}
-		
-		//when computer's total is over 21, but user's total is under 21
-		if(compTotal > 21 && userTotal <= 21) {
+		} else if(compTotal <= 21 && userTotal > 21) {
+			//when computer's total is equal to or under 21, and user's total is over 21 
+			JOptionPane.showMessageDialog( null, "I win because you went over!" );
+		} else if(compTotal > 21 && userTotal <= 21) {
+			//when computer's total is over 21, but user's total is under 21	
 			JOptionPane.showMessageDialog( null, "You win because I went over!" );
-		}
-		
-		//when both player's totals are over 21
-		if(userTotal > 21 && compTotal > 21) {
+		} else if(compTotal <= 21 && userTotal <= 21 && compTotal == userTotal) {
+			//when both player's totals are equal to or under 21, and equal
+			JOptionPane.showMessageDialog( null, "We tied!" );
+		} else if(userTotal > 21 && compTotal > 21 ) {
+			//when both player's totals are over 21
 			JOptionPane.showMessageDialog( null, "Boo :( We both lose!" );
 		}
 
