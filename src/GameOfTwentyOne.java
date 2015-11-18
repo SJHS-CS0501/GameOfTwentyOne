@@ -28,33 +28,37 @@ public class GameOfTwentyOne {
 		int computer = 0;
 		
 		System.out.println( "Let's play a Game of 21!\nIt's like blackjack but with simulated dice!" );
-
-		// put a loop thing in here
 		
-		DieOne.roll();
-		total += DieOne.getValue();
-		
-		DieTwo.roll();
-		total += DieTwo.getValue();
-		
-		System.out.print( "You're total is " + total + ". Would you like to roll the dice again?\n(Enter y for yes and n for no)" );
-		cont = keyboard.nextLine();
-		
-		if( cont.equalsIgnoreCase( "y" )) {
-			DieOne.roll();
+		do { DieOne.roll();
 			total += DieOne.getValue();
-			
+		
 			DieTwo.roll();
 			total += DieTwo.getValue();
-			
-			System.out.println( "Your new total is " + total + "." );
-		} else if( cont.equalsIgnoreCase( "n" )) {
-			System.out.print( "You're total is still " + total + "." );
+		
+			DieOne.roll();
+			computer += DieOne.getValue();
+		
+			DieTwo.roll();
+			computer += DieTwo.getValue();
+		
+			System.out.print( "You're total is " + total +".\nWould you like to roll the dice again? (Enter y for yes and n for no)" );
+			cont = keyboard.nextLine();
+		
+		} while(cont.equalsIgnoreCase( "y" ) && total <= 21 );
+		
+		System.out.println( "My total is " + computer + ". Yours is " + total + ".");
+		
+		if( total > computer && total <= 21 ){
+			System.out.println( "You win!!" );
+		} else if( computer > total && computer <= 21 ){
+			System.out.println( "I WIN!! Not like I cheated or anything.." );
+		} else if( total == computer && total <= 21 ){
+			System.out.println( "We tied!" );
+		} else if( total > 21 && computer <= 21 ){
+			System.out.println( "You went over 21! I win:P" );
+		} else if( computer > 21 && total <= 21 ){
+			System.out.println( "I went over 21! I guess you win." );
 		}
-		
-		
-
-		
 		
 	}
 	
