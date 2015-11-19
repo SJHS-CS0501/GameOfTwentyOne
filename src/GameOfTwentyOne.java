@@ -99,6 +99,10 @@ public class GameOfTwentyOne {
 			System.out.println( " Congratulations! You Win! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
 			System.exit(0);
 		}
+		if( droll > 21 && drollcomp > 21 && droll == drollcomp ){
+			System.out.println(  " Both scores are " + droll + " it's a draw! " );
+			System.exit(0);
+		}
 	}	
 	
 	public static class DieJava {
