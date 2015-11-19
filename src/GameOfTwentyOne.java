@@ -1,45 +1,42 @@
 import java.util.Random;
 import java.util.Scanner;
-
-/**
- * 
- */
-
 /**
  * @author Jack Protivnak
- *
  */
 public class GameOfTwentyOne {
-
 	/**
+	 * This program is designed to simulate a game of BlackJack
+	 * using dice instead of cards. The user will be paired against
+	 * the computer and will have the option of rolling until they tell
+	 * the program to stop. It will then compare the scores and share
+	 * the results.
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner keyboard = new Scanner(System.in);
-		
-		System.out.println( "Yo fam, let's play a game... BLACKJACK" );
-		response();
-		
-		
-		
-		
-		
-		
-		
+		System.out.println( "Yo fam, let's play a game of... BLACKJACK" ); // Introduction
+		response(); // Method 'response'
 	}
-
+	/**
+	 * This method will not return anything, but will allow the user
+	 * to roll the dice in the game and will give them options based on 
+	 * their current score in the game. It will then present their score 
+	 * compared to the computer's score and will then tell them
+	 * if they win or not.
+	 */
 	public static void response() {
-		String userInput = null;
-		int userTotal = 0;
-		int compTotal = 0;
-		Die dieRoll1 = new Die(6);
-		Die dieRoll2 = new Die(6);
-		Scanner keyboard = new Scanner(System.in);
+		String userInput = null; // Object for user's input
+		int userTotal = 0; // Declaring variable userTotal
+		int compTotal = 0; // Declaring variable compTotal
+		Die dieRoll1 = new Die(6); // Creating new object for Die Class
+		Die dieRoll2 = new Die(6); // Creating new object for die Class
+		Scanner keyboard = new Scanner(System.in); // Notifying the system that the keyboard will be used as input
 		
-		
-		do {
-			if (userTotal <= 21) {
+		// A while loop to determine the next step for the user.
+		// If their score is below 21, they will have the option of
+		// rolling again or exiting and get the results.
+		while (true) {
+			if (userTotal < 21) {
 				System.out.println( "Please enter 'y' if you'd like to roll the dice or -1 to exit: " );
 				userInput = keyboard.nextLine();
 				if (userInput.matches("^[Yy]{1}$") ) {
@@ -50,17 +47,19 @@ public class GameOfTwentyOne {
 					dieRoll2.roll();
 					userTotal += dieRoll1.getValue() + dieRoll2.getValue();
 					System.out.println( "Your total is: " + userTotal );
-					if (userTotal > 21) {
+					if (userTotal >= 21 || compTotal >= 21) {
 						break;
 					}
-				}
 				} else if (userInput.matches("^-1$") ) {
 					break;
 				} else {
 					System.out.println( "Invalid character entered. Please try again." );
 				}
-		} while( userInput.equalsIgnoreCase("y"));
-		
+			}
+		}
+		// A set of if and else if statements to determine the outcome
+		// of the game and will then tell the user the results based on 
+		// their score and the computer's score.
 		if (userTotal > 21 && compTotal > 21) {
 			System.out.println( "\nEveryone LOOSES!!!\nComputer Total: " + compTotal + "\nYour total: " + userTotal );
 			System.exit(0);
@@ -83,9 +82,5 @@ public class GameOfTwentyOne {
 		else {
 			System.out.println( "Your total is: " + userTotal + "\nComputer Total: " + compTotal );
 		}
-		
-	
 	}
-	
-	
 }
