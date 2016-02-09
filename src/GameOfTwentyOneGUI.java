@@ -57,7 +57,7 @@ public class GameOfTwentyOneGUI {
         myFrame.add(message);
         
         // button constraints
-        c.gridwidth = GridBagConstraints.RELATIVE;
+        c.gridwidth = GridBagConstraints.REMAINDER;
         // make button
         newGameButton = new JButton("New Game");
         newGameButton.setFont(new Font("TimesRoman", Font.BOLD, 12));
@@ -66,7 +66,7 @@ public class GameOfTwentyOneGUI {
         myFrame.add(newGameButton);
         
         // text button add
-        c.gridwidth = GridBagConstraints.RELATIVE;
+        c.gridwidth = GridBagConstraints.REMAINDER;
         rollButton = new JButton("Roll");
         rollButton.setFont(new Font("TimesRoman", Font.BOLD, 12));
         rollButton.addActionListener(listener);
@@ -85,7 +85,28 @@ public class GameOfTwentyOneGUI {
 			JButton eventSource = (JButton)e.getSource();
 			
 			if(eventSource.getText().equals("Roll")) {
-				
+				if (playerScore > 21 || houseScore > 21){
+					System.out.printf("House: %d\nPlayer: %d\n\n", houseScore, playerScore);
+				} else {
+					// Roll for house
+					rollMe.roll();
+					houseScore += rollMe.getValue();
+					
+					rollMe.roll();
+					houseScore += rollMe.getValue();
+					
+					// Roll for player
+					rollMe.roll();
+					roll1 = rollMe.getValue();
+					
+					rollMe.roll();
+					roll2 = rollMe.getValue();
+					
+					// Print player's score
+					playerScore += roll1 + roll2;
+					
+					message.setText("You roll " + roll1 + " and " + roll2 + ". Total: " + playerScore);
+				}
 			}
 		}
 
