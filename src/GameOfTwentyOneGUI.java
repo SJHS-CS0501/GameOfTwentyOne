@@ -16,6 +16,7 @@ import javax.swing.*;
 public class GameOfTwentyOneGUI {
 
 	static JLabel message;
+	static JLabel scoreBox;
     static JButton rollButton;
     static JButton newGameButton;
     static GridBagLayout layout;
@@ -48,6 +49,7 @@ public class GameOfTwentyOneGUI {
         
         // label constraints
         c.weightx = 0.0;
+        
         c.gridwidth = GridBagConstraints.NORTH;
         // OK, now let's add a label
         message = new JLabel("Welcome to Game of 21! Get the highest score <= 21!");
@@ -59,11 +61,19 @@ public class GameOfTwentyOneGUI {
         // button constraints
         c.gridwidth = GridBagConstraints.REMAINDER;
         // make button
-        newGameButton = new JButton("New Game");
+        newGameButton = new JButton("End");
         newGameButton.setFont(new Font("TimesRoman", Font.BOLD, 12));
         newGameButton.addActionListener(listener);
         layout.setConstraints( newGameButton, c);
         myFrame.add(newGameButton);
+        
+        c.gridwidth = GridBagConstraints.SOUTH;
+        // OK, now let's add a label
+        scoreBox = new JLabel("[New Game]");
+        scoreBox.setForeground(Color.BLACK);
+        scoreBox.setFont(new Font("TimesRoman", Font.BOLD, 24));
+        layout.setConstraints( scoreBox, c );
+        myFrame.add(scoreBox);
         
         // text button add
         c.gridwidth = GridBagConstraints.REMAINDER;
@@ -79,15 +89,40 @@ public class GameOfTwentyOneGUI {
 
 	}
 	
+	static void endGame() {
+		scoreBox.setText("House: " + houseScore + " Player: " + playerScore);
+		
+		// Say who wins depending on win conditions
+		if (playerScore > 21 && houseScore > 21) {
+			message.setText("Tie, you both lose.");
+			//System.out.println("House probably keeps your money though, that cheater!");
+		} else if (playerScore > 21) {
+			message.setText("House wins.");
+		} else if (houseScore > 21) {
+			System.out.println("Player wins.");
+		} else if (houseScore > playerScore) {
+			message.setText("House wins.");
+		} else if (playerScore > houseScore) {
+			message.setText("Player wins.");
+		} else {
+			message.setText("Tie, you both win.");
+		}
+				
+		playerScore = 0;
+		houseScore = 0;
+	}
+	
 	static class MyListener implements ActionListener {
 		
 		public void actionPerformed(ActionEvent e) {
 			JButton eventSource = (JButton)e.getSource();
 			
 			if(eventSource.getText().equals("Roll")) {
-				if (playerScore > 21 || houseScore > 21){
-					System.out.printf("House: %d\nPlayer: %d\n\n", houseScore, playerScore);
-				} else {
+				if (playerScore < 21 || houseScore < 21){
+					
+					// Set Text
+					message.setText("Welcome to Game of 21! Get the highest score <= 21!");
+					
 					// Roll for house
 					rollMe.roll();
 					houseScore += rollMe.getValue();
@@ -105,8 +140,12 @@ public class GameOfTwentyOneGUI {
 					// Print player's score
 					playerScore += roll1 + roll2;
 					
-					message.setText("You roll " + roll1 + " and " + roll2 + ". Total: " + playerScore);
+					scoreBox.setText("You roll " + roll1 + " and " + roll2 + ". Total: " + playerScore);
+				} else {
+					endGame();
 				}
+			} else {
+				endGame();
 			}
 		}
 
