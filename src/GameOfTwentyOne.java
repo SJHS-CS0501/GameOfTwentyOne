@@ -1,5 +1,6 @@
-import java.util.Scanner;
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 /**
  * This program will allow a user to play a variation of the popular blackjack card game with the computer.
@@ -7,21 +8,45 @@ import javax.swing.JOptionPane;
  * @author Julianna Nichols
  */
 public class GameOfTwentyOne {
+	
+	static JLabel label;
+	static JTextField text;
+	static JButton button;
 
 	/**
 	 * This is the main method for the GameOfTwentyOne program.
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
-		Scanner keyboard = new Scanner( System.in );
+
 		Die roll = new Die(6); //creating new Die object
 		int userTotal = 0; //tally of user's total
 		int compTotal = 0; //tally of computer's total
 		int result; //yes or no response if user wants to roll again
+		int display;
+		final int WINDOW_HEIGHT = 350; //window height in pixels
+		final int WINDOW_WIDTH = 250; //window width in pixels
+		JFrame window = new JFrame();
 		
+		//setting title
+		window.setTitle( "Game of Twenty One" );
 		
-		JOptionPane.showMessageDialog( null, "Let's play a game of blackjack--with dice!\nI just rolled, your turn!" );
+		//setting size of window
+		window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		
+		//when close button is clicked
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//display window
+		window.setVisible(true);
+		
+		//calling on build method to build text field
+		build(1);
+		
+		window.add(label);
+		window.add(button);
+		
+		//JOptionPane.showMessageDialog( null, "Let's play a game of blackjack--with dice!\nI just rolled, your turn!" );
 		
 		do {
 			roll.roll(); //first die
@@ -65,6 +90,23 @@ public class GameOfTwentyOne {
 			JOptionPane.showMessageDialog( null, "Boo :( We both lose!" );
 		}
 
+	}
+	
+	/**
+	 * Build window
+	 */
+	private static void build( int display ) {
+		
+		switch(display) {
+		
+		case 1:
+			label = new JLabel( "Let's play a game of blackjack--with dice!\nI just rolled, your turn!");
+			button = new JButton( "Roll" );
+			
+		case 2:
+		
+		}
+		
 	}
 
 }
