@@ -1,4 +1,10 @@
 import java.util.Scanner;
+import javax.swing.*;
+
+//import GameOfTwentyOne.MyListener;
+
+import java.awt.*;
+import java.awt.event.*;
 
 /**
  * 
@@ -14,6 +20,12 @@ import java.util.Scanner;
  */
 public class GameOfTwentyOne {
 
+	static JLabel label;
+	static JButton button;
+	static JTextField textField;
+	static JButton textFieldUpdate;
+	static GridBagLayout layout;
+	
 	/**
 	 * This is the main class for GameOfTwentyOne program.
 	 * @param args main arguments for the GameOfTwentyOne class
@@ -29,7 +41,45 @@ public class GameOfTwentyOne {
 		int total = 0; // user's total
 		int computer = 0; // computer's total
 		
-		System.out.println( "Let's play a Game of 21!\nIt's like blackjack but with simulated dice!" );
+		JFrame frame = new JFrame( "Game of 21" );
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		
+		layout = new GridBagLayout();
+	    frame.setLayout( layout );
+	        
+	    GridBagConstraints c = new GridBagConstraints();
+	    c.fill = GridBagConstraints.BOTH;
+	        
+	    c.weightx = 0.0;
+	    c.gridwidth = GridBagConstraints.RELATIVE;
+		
+        label.setFont( new Font("TimesRoman", Font.BOLD, 18) );
+        layout.setConstraints( label, c );
+        // Now add it to the frame (ALSO IMPORTANT!!!!!!!)
+        frame.add( label );
+        
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        button = new JButton( "Roll again" );
+        button.setFont(new Font("TimesRoman", Font.BOLD, 12));
+
+        ActionListener listener = new SuperListener();
+        button.addActionListener(listener);
+
+        layout.setConstraints( button, c );
+        frame.add( button );
+
+	    frame.setVisible( true );
+		
+		
+		label = new JLabel( "Let's play a Game of 21!\nIt's like blackjack but with simulated dice!" );
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		do{	do { DieOne.roll(); // user can choose to roll the dice until their score is over 21
 			
@@ -94,5 +144,18 @@ public class GameOfTwentyOne {
 		System.out.println( "Goodbye!" );
 		
 	}
+	
+	 static class SuperListener implements ActionListener {
+
+	        Color theColors[] = {Color.BLUE, Color.RED, Color.GREEN, Color.BLACK, Color.WHITE};
+	        int index = 0;
+
+	        public void actionPerformed(ActionEvent e) {
+	            JButton eventSource = (JButton)e.getSource();
+	            if( eventSource.getText().equals( "Roll again" ) ) {
+	                label.setText( textField.getText() );
+	            }
+	        }
+	    }
 	
 }
