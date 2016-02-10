@@ -14,6 +14,8 @@ import javax.swing.*;
  *
  */
 public class GameOfTwentyOneGUI {
+	
+	static final char[] DICE_CHARS = {'⚀', '⚁', '⚂', '⚃', '⚄', '⚅'};
 
 	static JLabel message;
 	static JLabel scoreBox;
@@ -50,11 +52,11 @@ public class GameOfTwentyOneGUI {
         // label constraints
         c.weightx = 0.0;
         
-        c.gridwidth = GridBagConstraints.NORTH;
+        c.gridwidth = GridBagConstraints.RELATIVE;
         // OK, now let's add a label
         message = new JLabel("Welcome to Game of 21! Get the highest score <= 21!");
         message.setForeground(Color.BLACK);
-        message.setFont(new Font("TimesRoman", Font.BOLD, 24));
+        message.setFont(new Font("Segoe UI Symbol", Font.BOLD, 24));
         layout.setConstraints( message, c );
         myFrame.add(message);
         
@@ -62,23 +64,23 @@ public class GameOfTwentyOneGUI {
         c.gridwidth = GridBagConstraints.REMAINDER;
         // make button
         newGameButton = new JButton("End");
-        newGameButton.setFont(new Font("TimesRoman", Font.BOLD, 12));
+        newGameButton.setFont(new Font("Segoe UI Symbol", Font.BOLD, 12));
         newGameButton.addActionListener(listener);
         layout.setConstraints( newGameButton, c);
         myFrame.add(newGameButton);
         
-        c.gridwidth = GridBagConstraints.SOUTH;
+        c.gridwidth = GridBagConstraints.RELATIVE;
         // OK, now let's add a label
         scoreBox = new JLabel("[New Game]");
         scoreBox.setForeground(Color.BLACK);
-        scoreBox.setFont(new Font("TimesRoman", Font.BOLD, 24));
+        scoreBox.setFont(new Font("Segoe UI Symbol", Font.BOLD, 24));
         layout.setConstraints( scoreBox, c );
         myFrame.add(scoreBox);
         
         // text button add
         c.gridwidth = GridBagConstraints.REMAINDER;
         rollButton = new JButton("Roll");
-        rollButton.setFont(new Font("TimesRoman", Font.BOLD, 12));
+        rollButton.setFont(new Font("Segoe UI Symbol", Font.BOLD, 12));
         rollButton.addActionListener(listener);
         layout.setConstraints(rollButton, c);
         myFrame.add(rollButton);
@@ -92,21 +94,33 @@ public class GameOfTwentyOneGUI {
 	static void endGame() {
 		scoreBox.setText("House: " + houseScore + " Player: " + playerScore);
 		
-		// Say who wins depending on win conditions
+		// FIX WIN CONDITIONS
+		
 		if (playerScore > 21 && houseScore > 21) {
 			message.setText("Tie, you both lose.");
-			//System.out.println("House probably keeps your money though, that cheater!");
-		} else if (playerScore > 21) {
+		} else if (playerScore > 21 || (houseScore > playerScore && houseScore < 21)) {
 			message.setText("House wins.");
-		} else if (houseScore > 21) {
-			System.out.println("Player wins.");
-		} else if (houseScore > playerScore) {
-			message.setText("House wins.");
-		} else if (playerScore > houseScore) {
+		} else if (houseScore > 21 || (playerScore > houseScore && playerScore < 21)) {
 			message.setText("Player wins.");
 		} else {
 			message.setText("Tie, you both win.");
 		}
+		
+//		// Say who wins depending on win conditions
+//		if (playerScore > 21 && houseScore > 21) {
+//			message.setText("Tie, you both lose.");
+//			//System.out.println("House probably keeps your money though, that cheater!");
+//		} else if (playerScore > 21) {
+//			message.setText("House wins.");
+//		} else if (houseScore > 21) {
+//			System.out.println("Player wins.");
+//		} else if (houseScore > playerScore) {
+//			message.setText("House wins.");
+//		} else if (playerScore > houseScore) {
+//			message.setText("Player wins.");
+//		} else {
+//			message.setText("Tie, you both win.");
+//		}
 				
 		playerScore = 0;
 		houseScore = 0;
@@ -118,30 +132,29 @@ public class GameOfTwentyOneGUI {
 			JButton eventSource = (JButton)e.getSource();
 			
 			if(eventSource.getText().equals("Roll")) {
-				if (playerScore < 21 || houseScore < 21){
-					
-					// Set Text
-					message.setText("Welcome to Game of 21! Get the highest score <= 21!");
-					
-					// Roll for house
-					rollMe.roll();
-					houseScore += rollMe.getValue();
-					
-					rollMe.roll();
-					houseScore += rollMe.getValue();
-					
-					// Roll for player
-					rollMe.roll();
-					roll1 = rollMe.getValue();
-					
-					rollMe.roll();
-					roll2 = rollMe.getValue();
-					
-					// Print player's score
-					playerScore += roll1 + roll2;
-					
-					scoreBox.setText("You roll " + roll1 + " and " + roll2 + ". Total: " + playerScore);
-				} else {
+				// Set Text
+				message.setText("Welcome to Game of 21! Get the highest score <= 21!");
+				
+				// Roll for house
+				rollMe.roll();
+				houseScore += rollMe.getValue();
+				
+				rollMe.roll();
+				houseScore += rollMe.getValue();
+				
+				// Roll for player
+				rollMe.roll();
+				roll1 = rollMe.getValue();
+				
+				rollMe.roll();
+				roll2 = rollMe.getValue();
+				
+				// Print player's score
+				playerScore += roll1 + roll2;
+				
+				scoreBox.setText("You roll " + DICE_CHARS[roll1 - 1] + " and " + DICE_CHARS[roll2 - 1] + ". Total: " + playerScore);
+				
+				if (playerScore > 21 || houseScore > 21){
 					endGame();
 				}
 			} else {
