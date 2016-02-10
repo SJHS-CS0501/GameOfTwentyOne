@@ -135,17 +135,19 @@ static class MyListener implements ActionListener
         if(cn<17)
         {
           cn= cn + x;
-        }//computer number lower than 17
-        if(cn>=17)
+          System.out.println("Computer-Dice rolled " + x);
+        }//computer number lower than 19
+        if(cn>=19)
         {
           cn = cn+0;
-        }computer number>17
-     }//if button2 = source end
+          System.out.println("Computer did not roll dice");
+        }computer number>19
+     }//if myButton2 = source end
      if(source ==myButton1)
      {
         Flag1=true;
      }//source == my button end
-     if(source==mybutton3)
+     if(source==myButton3)
      {
       system.exit;
      }//end game
