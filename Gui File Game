@@ -10,15 +10,19 @@ public class GameofTwentyone
   public staic void main(String[] args)
   {
     //variables
-    static JLabel myLabel1;
-    static JLable myLable2;
-    static JLable myLable3;
-    static JButton myButton;
-    static JButton myButton2;
+    static JLabel myLabel1;                     //announces users roll sum
+    static JLable myLabel2;                     //announces computers roll sum
+    static JLable myLabel3;                     //announces when you lose to the computer
+    static JLable myLabel4;                     //announces when you beat the Computer
+    static JLable myLabel5;                     //announces amounts of victories
+    static JButton myButton;                    //upon click, add to users sum
+    static JButton myButton2;                   //upon click, shows myLabel3 and myLabel4
     static JButton myButton3;
     static GridBagLayout layout;
-    int pn = 0;
-    int cn = 0;
+    int pn = 0;                                 //users sum
+    int cn = 0;                                 //computers sum
+    short pw = 0;                               //amount of player wins
+    short cw = 0;                               //amount of computer wins
     Random Random = new Random();
     int x = ran.nextInt(5);
     
@@ -55,6 +59,12 @@ public class GameofTwentyone
         layout.setConstraints( myLabel2, c );
         myFrame.add(myLabel2);
         
+        myLable5= new JLable("Computer: " + cw + "         You: " + pw);
+        myLabel5.setForeground(Color.BLUE);
+        myLabel5.setFont(new Font("TimesRoman", Font.BOLD, 24));
+        layout.setConstraints( myLabel5, c );
+        myFrame.add(myLabel5)
+        
         boolean Flag1 = false;
         while(Flag1==true)
         {
@@ -68,19 +78,23 @@ public class GameofTwentyone
             myFrame.add(myLabel3);
             pn= 0;
             cn=0;
+            cw++;
+            Flag1 = false;
           }//myLable3 end
         
         
           //Lable4 
           if(cn>21||pn==21)
           {
-            myLable4 = new JLable("You beat the computer");
+            myLabel4 = new JLable("You beat the computer");
             myLabel4.setForeground(Color.BLUE);
             myLabel4.setFont(new Font("TimesRoman", Font.BOLD, 24));
             layout.setConstraints( myLabel4, c );
-            myFrame.add(myLabe4);
+            myFrame.add(myLabel4);
             pn= 0;
             cn=0;
+            pw++;
+            Flag1 = false;
           }//myLable4 end
         }//WHILE FLAG1 =TRUE  
         
@@ -129,7 +143,7 @@ static class MyListener implements ActionListener
    public void actionPerformed(ActionEvent e) 
    {
      JButton eventSource = (JButton)e.getSource();
-     if( source== myButton2)
+     if( source== myButton)
      {
         pn = pn + x;
         if(cn<17)
@@ -143,10 +157,10 @@ static class MyListener implements ActionListener
           System.out.println("Computer did not roll dice");
         }computer number>19
      }//if myButton2 = source end
-     if(source ==myButton1)
+     if(source ==myButton2)
      {
         Flag1=true;
-     }//source == my button end
+     }//source == my button2 end
      if(source==myButton3)
      {
       system.exit;
