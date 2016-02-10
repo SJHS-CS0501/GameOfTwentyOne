@@ -40,13 +40,12 @@ public class GameOfTwentyOne {
 			computerDieRoll += d1.getDieValue();
 			dieRoll += d2.getDieValue();
 			System.out.println("Your current score is: " + dieRoll);
-			
 			//if statements
 			if( dieRoll == 21 && computerDieRoll != 21 ) {
 				System.out.println("YOU WIN!!!!!!! The computer had: " + computerDieRoll + " You had: " + dieRoll );
 				System.exit(0);
 			}
-			if( dieRoll != 21 && computerDieRoll != 21 ) {
+			if( dieRoll != 21 && computerDieRoll == 21 ) {
 				System.out.println("Better luck next time! The computer had: " + computerDieRoll + " You had: " + dieRoll);
 				System.exit(0);
 			}
@@ -81,7 +80,7 @@ public class GameOfTwentyOne {
 			System.out.println("YOU WIN!!!!!!! The computer had: " + computerDieRoll + " You had: " + dieRoll );
 			System.exit(0);
 		}
-		if( dieRoll != 21 && computerDieRoll != 21 ) {
+		if( dieRoll != 21 && computerDieRoll == 21 ) {
 			System.out.println("Better luck next time! The computer had: " + computerDieRoll + " You had: " + dieRoll);
 			System.exit(0);
 		}
@@ -114,6 +113,7 @@ public class GameOfTwentyOne {
 			System.out.println("YOU WIN!!!!!!! The computer had: " + computerDieRoll + " You had: " + dieRoll );
 			System.exit(0);
 		}
+		keyboard.close();
 
 	}
 	
