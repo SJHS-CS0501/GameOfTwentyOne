@@ -52,14 +52,14 @@ public class GameofTwentyone
         layout.setConstraints( myLabel1, c );
         myFrame.add(myLabel1);
         
-        //lable2
-        myLable2= new JLable("The computers roll sum is: "+cn);
+        //label2
+        myLabel2= new JLable("The computers roll sum is: "+cn);
         myLabel2.setForeground(Color.BLUE);
         myLabel2.setFont(new Font("TimesRoman", Font.BOLD, 24));
         layout.setConstraints( myLabel2, c );
         myFrame.add(myLabel2);
         
-        myLable5= new JLable("Computer: " + cw + "         You: " + pw);
+        myLabel5= new JLable("Computer: " + cw + "         You: " + pw);
         myLabel5.setForeground(Color.BLUE);
         myLabel5.setFont(new Font("TimesRoman", Font.BOLD, 24));
         layout.setConstraints( myLabel5, c );
