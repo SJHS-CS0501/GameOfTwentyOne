@@ -226,9 +226,6 @@ public class GameOfTwentyOneGUI {
 			//int dieRoll = 0;
 			//int computerDieRoll = 0;
 			JButton eventSource = (JButton)e.getSource();
-			int ctr = 0;
-			int ctrTwo = 0;
-			int ctrThree = 0;
 			if(eventSource.getText().equals("HIT ME")) {
 				d1.roll();
 				d2.roll();
@@ -270,7 +267,7 @@ public class GameOfTwentyOneGUI {
 				}
 				if( dieRoll > 21 && computerDieRoll < 21 ) {
 					ctrTwo++;
-					myLabel.setText("Better luck next time! The computer had: " + computerDieRoll + " You had: " + dieRoll + " Your record is " + ctr + "-" + ctrTwo + "-" + ctrThree + " Would you like to play again? If so, press HIT ME");
+					myLabel.setText("Better luck next time! The computer had: " + computerDieRoll + " You had: " + dieRoll + " Would you like to play again? If so, press HIT ME");
 					//System.exit(0);
 					dieRoll = 0;
 					computerDieRoll = 0;
