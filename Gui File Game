@@ -121,7 +121,9 @@ public class GameofTwentyone
         myFrame.add(myButton2);
         
         
-        myButton3 = new JButton("Close System");
+        
+        //myButton3
+        myButton3 = new JButton("Close Game");
         myButton3.setFont(new Font("TimesRoman", Font.ITALIC, 12));
 
         ActionListener listener3 = new MyListener();
@@ -142,8 +144,10 @@ static class MyListener implements ActionListener
 {
    public void actionPerformed(ActionEvent e) 
    {
-     JButton eventSource = (JButton)e.getSource();
-     if( source== myButton)
+     JButton eventSource1 = (JButton1)e.getSource1();
+     JButton eventSource2 = (JButton2)e.getSource2();
+     JButton eventSource3 = (JButton3)e.getSource3();
+     if( source1== myButton1)
      {
         pn = pn + x;
         if(cn<17)
@@ -157,11 +161,11 @@ static class MyListener implements ActionListener
           System.out.println("Computer did not roll dice");
         }computer number>19
      }//if myButton2 = source end
-     if(source ==myButton2)
+     if(source2 ==myButton2)
      {
         Flag1=true;
      }//source == my button2 end
-     if(source==myButton3)
+     if(source3==myButton3)
      {
       system.exit;
      }//end game
