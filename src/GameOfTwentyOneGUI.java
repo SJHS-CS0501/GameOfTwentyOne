@@ -32,7 +32,8 @@ public class GameOfTwentyOneGUI {
 	static Die rollMe = new Die(6);
 	
 	/**
-	 * @param args
+	 * GameOfTwentyOneGUI main method
+	 * @param args command line args
 	 */
 	public static void main(String[] args) {
 		
@@ -53,7 +54,7 @@ public class GameOfTwentyOneGUI {
         c.weightx = 0.0;
         
         c.gridwidth = GridBagConstraints.RELATIVE;
-        // OK, now let's add a label
+        // message label
         message = new JLabel("Welcome to Game of 21! Get the highest score <= 21!");
         message.setForeground(Color.BLACK);
         message.setFont(new Font("Segoe UI Symbol", Font.BOLD, 24));
@@ -62,7 +63,7 @@ public class GameOfTwentyOneGUI {
         
         // button constraints
         c.gridwidth = GridBagConstraints.REMAINDER;
-        // make button
+        // end game button
         newGameButton = new JButton("End");
         newGameButton.setFont(new Font("Segoe UI Symbol", Font.BOLD, 12));
         newGameButton.addActionListener(listener);
@@ -70,14 +71,14 @@ public class GameOfTwentyOneGUI {
         myFrame.add(newGameButton);
         
         c.gridwidth = GridBagConstraints.RELATIVE;
-        // OK, now let's add a label
+        // score label
         scoreBox = new JLabel("[New Game]");
         scoreBox.setForeground(Color.BLACK);
         scoreBox.setFont(new Font("Segoe UI Symbol", Font.BOLD, 24));
         layout.setConstraints( scoreBox, c );
         myFrame.add(scoreBox);
         
-        // text button add
+        // add roll button
         c.gridwidth = GridBagConstraints.REMAINDER;
         rollButton = new JButton("Roll");
         rollButton.setFont(new Font("Segoe UI Symbol", Font.BOLD, 12));
@@ -91,11 +92,15 @@ public class GameOfTwentyOneGUI {
 
 	}
 	
+	/**
+	 * Displays score and a message at the end of a game
+	 */
 	static void endGame() {
+		// display scores
 		scoreBox.setText("House: " + houseScore + " Player: " + playerScore);
 		
-		// FIX WIN CONDITIONS
-		
+		// FIXED WIN CONDITIONS
+		// display message based on scores
 		if (playerScore > 21 && houseScore > 21) {
 			message.setText("Tie, you both lose.");
 		} else if (playerScore > 21 || (houseScore > playerScore && houseScore < 21)) {
@@ -121,17 +126,26 @@ public class GameOfTwentyOneGUI {
 //		} else {
 //			message.setText("Tie, you both win.");
 //		}
-				
+		
+		// reset scores to 0 for a new game
 		playerScore = 0;
 		houseScore = 0;
 	}
 	
+	
+	/**
+	 * This class handles reactions to user input
+	 * @author Ryan Luchs
+	 *
+	 */
 	static class MyListener implements ActionListener {
 		
 		public void actionPerformed(ActionEvent e) {
 			JButton eventSource = (JButton)e.getSource();
 			
 			if(eventSource.getText().equals("Roll")) {
+				// if the "Roll" button is pressed
+				
 				// Set Text
 				message.setText("Welcome to Game of 21! Get the highest score <= 21!");
 				
@@ -154,10 +168,12 @@ public class GameOfTwentyOneGUI {
 				
 				scoreBox.setText("You roll " + DICE_CHARS[roll1 - 1] + " and " + DICE_CHARS[roll2 - 1] + ". Total: " + playerScore);
 				
+				// If a score goes above 21 end the game
 				if (playerScore > 21 || houseScore > 21){
 					endGame();
 				}
 			} else {
+				// if the "end" button is pressed
 				endGame();
 			}
 		}
