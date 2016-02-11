@@ -103,9 +103,9 @@ public class GameOfTwentyOneGUI {
 		// display message based on scores
 		if (playerScore > 21 && houseScore > 21) {
 			message.setText("Tie, you both lose.");
-		} else if (playerScore > 21 || (houseScore > playerScore && houseScore < 21)) {
+		} else if (playerScore > 21 || (houseScore > playerScore && houseScore <= 21)) {
 			message.setText("House wins.");
-		} else if (houseScore > 21 || (playerScore > houseScore && playerScore < 21)) {
+		} else if (houseScore > 21 || (playerScore > houseScore && playerScore <= 21)) {
 			message.setText("Player wins.");
 		} else {
 			message.setText("Tie, you both win.");
