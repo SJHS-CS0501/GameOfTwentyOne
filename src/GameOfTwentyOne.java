@@ -23,8 +23,12 @@ public class GameOfTwentyOne {
 	static JLabel label;
 	static JButton button;
 	static JTextField textField;
-	static JButton textFieldUpdate;
+	//static JButton textFieldUpdate;
 	static GridBagLayout layout;
+	
+	static int total = 0; // user's total
+	static Dice DieOne = new Dice(6); // first roll
+	static Dice DieTwo = new Dice(6); // second roll
 	
 	/**
 	 * This is the main class for GameOfTwentyOne program.
@@ -33,12 +37,9 @@ public class GameOfTwentyOne {
 	public static void main(String[] args) {
 		
 		Scanner keyboard = new Scanner(System.in);
-		Dice DieOne = new Dice(6); // first roll
-		Dice DieTwo = new Dice(6); // second roll
 		String cont; // holds user's answer for continuing
 		int wins = 0; // user's wins
 		int count = 0; // to count the number of games played
-		int total = 0; // user's total
 		int computer = 0; // computer's total
 		
 		JFrame frame = new JFrame( "Game of 21" );
@@ -53,14 +54,16 @@ public class GameOfTwentyOne {
 	    c.weightx = 0.0;
 	    c.gridwidth = GridBagConstraints.RELATIVE;
 		
-        label.setFont( new Font("TimesRoman", Font.BOLD, 18) );
+	    label = new JLabel( "Let's play a Game of 21! It's like blackjack but with simulated dice!" );
+	    
+	    label.setFont( new Font("TimesRoman", Font.PLAIN, 18) );
         layout.setConstraints( label, c );
         // Now add it to the frame (ALSO IMPORTANT!!!!!!!)
         frame.add( label );
         
         c.gridwidth = GridBagConstraints.REMAINDER;
         button = new JButton( "Roll again" );
-        button.setFont(new Font("TimesRoman", Font.BOLD, 12));
+        button.setFont(new Font("TimesRoman", Font.PLAIN, 12));
 
         ActionListener listener = new SuperListener();
         button.addActionListener(listener);
@@ -68,10 +71,13 @@ public class GameOfTwentyOne {
         layout.setConstraints( button, c );
         frame.add( button );
 
-	    frame.setVisible( true );
+        frame.pack();
+        frame.setSize( frame.getPreferredSize() );
+        
+        frame.setVisible( true );
 		
 		
-		label = new JLabel( "Let's play a Game of 21!\nIt's like blackjack but with simulated dice!" );
+		
 		
 		
 		
@@ -147,13 +153,12 @@ public class GameOfTwentyOne {
 	
 	 static class SuperListener implements ActionListener {
 
-	        Color theColors[] = {Color.BLUE, Color.RED, Color.GREEN, Color.BLACK, Color.WHITE};
 	        int index = 0;
 
 	        public void actionPerformed(ActionEvent e) {
 	            JButton eventSource = (JButton)e.getSource();
-	            if( eventSource.getText().equals( "Roll again" ) ) {
-	                label.setText( textField.getText() );
+	            if( eventSource.getText().equals( "Roll again" ) && total <= 21 ) {
+	               // label.setText(  );
 	            }
 	        }
 	    }
