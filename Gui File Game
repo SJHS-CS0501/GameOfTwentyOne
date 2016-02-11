@@ -11,10 +11,10 @@ public class GameofTwentyone
   {
     //variables
     static JLabel myLabel1;                     //announces users roll sum
-    static JLable myLabel2;                     //announces computers roll sum
-    static JLable myLabel3;                     //announces when you lose to the computer
-    static JLable myLabel4;                     //announces when you beat the Computer
-    static JLable myLabel5;                     //announces amounts of victories
+    static JLabel myLabel2;                     //announces computers roll sum
+    static JLabel myLabel3;                     //announces when you lose to the computer
+    static JLabel myLabel4;                     //announces when you beat the Computer
+    static JLabel myLabel5;                     //announces amounts of victories
     static JButton myButton;                    //upon click, add to users sum
     static JButton myButton2;                   //upon click, shows myLabel3 and myLabel4
     static JButton myButton3;
