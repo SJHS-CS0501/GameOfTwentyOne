@@ -3,7 +3,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import Ex11_1.MyListener;
 
 /**
  * This program will allow a user to play a variation of the popular blackjack card game with the computer.
@@ -14,6 +13,7 @@ public class GameOfTwentyOne {
 	
 	static JLabel label;
     static JButton button;
+    static JButton buttonN;
     static JTextField textField;
     static GridBagLayout layout;
 
@@ -28,7 +28,7 @@ public class GameOfTwentyOne {
 		int userTotal = 0; //tally of user's total
 		int compTotal = 0; //tally of computer's total
 		int result; //yes or no response if user wants to roll again
-		ActionListener listener = new Listener();
+		ActionListener listener = new ActionListener();
 		layout = new GridBagLayout();
 		
 		JFrame frame = new JFrame("Game of Twenty-One");
@@ -40,6 +40,9 @@ public class GameOfTwentyOne {
 		c.fill = GridBagConstraints.BOTH;
 		c.weightx = 0.0;
 	    c.gridwidth = GridBagConstraints.RELATIVE;
+	    
+	    frame.setVisible(true);
+		
 	    label = new JLabel("Let's play a game of blackjack--with dice! I just rolled, your turn!");
 	    label.setForeground(Color.BLUE);
         label.setFont(new Font("TimesRoman", Font.BOLD, 24));
@@ -81,15 +84,14 @@ public class GameOfTwentyOne {
 	        button.setFont(new Font("TimesRoman", Font.PLAIN, 12));
 	        
 	        //making no button
-	        button = new JButton("No");
+	        buttonN = new JButton("No");
 	        //setting the font and font size of no button
-	        button.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+	        buttonN.setFont(new Font("TimesRoman", Font.PLAIN, 12));
 	        
+	        button.addActionListener(new RollAgainListener());
+	        buttonN.addActionListener(new RollAgainListener());
 	        
-	        button.addActionListener(listener);
-	        //actionlistener for button
-	        
-        } while();
+        } while(button.equals(true));
 
         label = new JLabel("My total was " + compTotal + "!");
 		label.setForeground(Color.BLACK);
@@ -123,53 +125,49 @@ public class GameOfTwentyOne {
 		
 		//when both player's totals are under 21, but computer's total is closer to 21
 		if(compTotal > userTotal && compTotal <= 21) {
-			JOptionPane.showMessageDialog( null, "I win!" );
+			label = new JLabel("I win!");
+			label.setForeground(Color.BLACK);
 		}
 		
 		//when user's total is over 21, but computer's total is under 21
-		if(userTotal > 21 && compTotal <= 21) {
-			JOptionPane.showMessageDialog( null, "I win because you went over!" );
+		if(userTotal > 21 && compTotal <= 21) {			
+			label = new JLabel("I win because you went over!");
+			label.setForeground(Color.BLACK);
 		}
 		
 		//when both player's totals are under 21, but user's total is closer to 21
 		if(userTotal > compTotal && userTotal <= 21) {
-			JOptionPane.showMessageDialog( null, "Yay! You win!" );
+			label = new JLabel("Yay! You win!");
+			label.setForeground(Color.BLACK);
 		}
 		
 		//when computer's total is over 21, but user's total is under 21
 		if(compTotal > 21 && userTotal <= 21) {
-			JOptionPane.showMessageDialog( null, "You win because I went over!" );
+			label = new JLabel("You win because I went over!");
+			label.setForeground(Color.BLACK);
 		}
 		
 		//when both player's totals are over 21
 		if(userTotal > 21 && compTotal > 21) {
-			JOptionPane.showMessageDialog( null, "Boo :( We both lose!" );
+			label = new JLabel("Boo :( We both lose!");
+			label.setForeground(Color.BLACK);
 		}
 		
 		frame.pack();
         frame.setSize( frame.getPreferredSize() );
-        
-        frame.setVisible(true);
 
 	}
 	
-	static class Listener implements ActionListener {
-
-        Color theColors[] = {Color.BLUE, Color.RED, Color.GREEN, Color.BLACK, Color.WHITE};
-        int index = 0;
-
-        public void actionPerformed(ActionEvent e) {
-            //JButton eventSource = (JButton) e.getSource();
-            //eventSource.setForeground(theColors[index++]);
-            JButton eventSource = (JButton)e.getSource();
-            if( eventSource.getText().equals("Update Label") ) {
-                label.setText( textField.getText() );
-            } else {
-                label.setForeground( theColors[++index] );
-                if (index >= theColors.length - 1) {
-                    index = -1;
-                }
-            }
-        }
-    }
+	private class RollAgainListener implements ActionListener {
+		
+		/**
+		 * The actionPerformed method executes when the user clicks on the yes or no button in
+		 * response to the question if they want to roll again
+		 * @param e the event object
+		 */
+		public void actionPerformed(ActionEvent e) {
+			
+		}
+	}
+	
 }
