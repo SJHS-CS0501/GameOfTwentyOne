@@ -1,8 +1,5 @@
 import java.util.Scanner;
 import javax.swing.*;
-
-//import GameOfTwentyOne.MyListener;
-
 import java.awt.*;
 import java.awt.event.*;
 
@@ -23,12 +20,14 @@ public class GameOfTwentyOne {
 	static JLabel label;
 	static JButton button;
 	static JTextField textField;
-	//static JButton textFieldUpdate;
+	static JButton quit;
 	static GridBagLayout layout;
 	
 	static int total = 0; // user's total
 	static Dice DieOne = new Dice(6); // first roll
 	static Dice DieTwo = new Dice(6); // second roll
+	static int count = 0; // to count the number of games played
+	static int computer = 0; // computer's total
 	
 	/**
 	 * This is the main class for GameOfTwentyOne program.
@@ -36,11 +35,9 @@ public class GameOfTwentyOne {
 	 */
 	public static void main(String[] args) {
 		
-		Scanner keyboard = new Scanner(System.in);
 		String cont; // holds user's answer for continuing
 		int wins = 0; // user's wins
-		int count = 0; // to count the number of games played
-		int computer = 0; // computer's total
+
 		
 		JFrame frame = new JFrame( "Game of 21" );
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
@@ -101,9 +98,11 @@ public class GameOfTwentyOne {
 			computer += DieTwo.getValue(); // secret dice rolls for computer
 			
 			
+			
+			
 			System.out.print( "You're total is " + total +".\nWould you like to roll the dice again? "
 					+ "(Enter y for yes and n for no)" ); // telling people their score
-			cont = keyboard.nextLine();
+			//cont = keyboard.nextLine();
 		
 			} while(cont.equalsIgnoreCase( "y" ) && total <= 21 ); 
 			// will not let the user continue rolling even if they hit y
@@ -137,13 +136,14 @@ public class GameOfTwentyOne {
 			}
 			
 			System.out.print( "Would you like to play again?" );
-			cont = keyboard.nextLine();
+			//cont = keyboard.nextLine();
 			
 			total = 0;
 			computer = 0; // resets total and computer for next game
 			count ++; // games played
 		
 		} while ( cont.equalsIgnoreCase( "y" ));
+		
 		
 		// displaying games won and played
 		System.out.println( "You won " + wins + " out of " + count + " games!" );
@@ -153,14 +153,27 @@ public class GameOfTwentyOne {
 	
 	 static class SuperListener implements ActionListener {
 
-	        int index = 0;
-
 	        public void actionPerformed(ActionEvent e) {
 	            JButton eventSource = (JButton)e.getSource();
-	            if( eventSource.getText().equals( "Roll again" ) && total <= 21 ) {
-	               // label.setText(  );
+	            if( eventSource.equals( "Roll again" ) && total <= 21 ) {
+	            	
+	            	DieOne.roll(); // user can choose to roll the dice until their score is over 21
+	    			
+	    			total += DieOne.getValue();
+	    		
+	    			DieTwo.roll();
+	    			total += DieTwo.getValue(); // dice rolls for user
+	    		
+	    			DieOne.roll();
+	    			computer += DieOne.getValue();
+	    		
+	    			DieTwo.roll();
+	    			computer += DieTwo.getValue(); // secret dice rolls for computer
+	           
+	    			label = new JLabel( "You're total is " + total );
 	            }
 	        }
-	    }
+	 }
+	 
 	
 }
