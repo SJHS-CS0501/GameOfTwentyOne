@@ -104,7 +104,7 @@ public class GameOfTwentyOne {
 		
 
 	
-	 static class SuperListener implements ActionListener {
+	static class SuperListener implements ActionListener {
 
 	        public void actionPerformed(ActionEvent e) {
 	            JButton eventSource = (JButton)e.getSource();
