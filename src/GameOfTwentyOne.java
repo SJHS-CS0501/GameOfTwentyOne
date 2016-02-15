@@ -64,19 +64,9 @@ public class GameOfTwentyOne {
         
         button.addActionListener(listener);
         
+        
 		for( int i = 1; i < 2; i-- ) {
-			button.equals(false);
-			textField = new JTextField("Do you want to roll again?");
-			textField.setForeground(Color.BLACK);
-			textField.setFont(new Font("TimesRoman", Font.PLAIN, 24));
-			// what to do when the component's display area is larger than the component's requested size
-			c.fill = GridBagConstraints.BOTH;
-			c.weightx = 0.2; // resizing behavior (column)
-			c.weighty = 0.2; // resizing behavior (row)
-			c.gridx = 1;
-			c.gridy = 1; // first row
-			frame.add(textField, c);
-
+			
 			// making no button
 			button = new JButton("No");
 			// setting the font and font size of no button
@@ -157,6 +147,7 @@ public class GameOfTwentyOne {
 			int userTotal = 0; //tally of user's total
 			int compTotal = 0; //tally of computer's total
 			GridBagConstraints c = new GridBagConstraints();
+			ActionListener listener = new RollAgainListener();
 			
 			JButton eventSource = (JButton)e.getSource();
 			if(eventSource.getText().equals("Roll")) {
@@ -190,6 +181,58 @@ public class GameOfTwentyOne {
         			textField.setText("You rolled an " + roll.getValue() + "!");
         			textField.setForeground(Color.BLACK);
         			frame.add(textField, c);
+        			
+        			textField = new JTextField("Do you want to roll again?");
+        			textField.setForeground(Color.BLACK);
+        			textField.setFont(new Font("TimesRoman", Font.PLAIN, 24));
+        			// what to do when the component's display area is larger than the component's requested size
+        			c.fill = GridBagConstraints.BOTH;
+        			c.weightx = 0.2; // resizing behavior (column)
+        			c.weighty = 0.2; // resizing behavior (row)
+        			c.gridx = 1;
+        			c.gridy = 1; // first row
+        			frame.add(textField, c);
+			}
+			
+			if(eventSource.getText().equals("No")) {
+				textField = new JTextField("My total was " + compTotal + "!");
+				textField.setForeground(Color.BLACK);
+				layout.setConstraints( textField, c);
+		        
+				//when both player's totals are under 21, but computer's total is closer to 21
+				if(compTotal > userTotal && compTotal <= 21) {
+					textField = new JTextField("I win!");
+					textField.setForeground(Color.BLACK);
+					layout.setConstraints( textField, c);
+				}
+				
+				//when user's total is over 21, but computer's total is under 21
+				if(userTotal > 21 && compTotal <= 21) {			
+					textField = new JTextField("I win because you went over!");
+					textField.setForeground(Color.BLACK);
+					layout.setConstraints( textField, c);
+				}
+				
+				//when both player's totals are under 21, but user's total is closer to 21
+				if(userTotal > compTotal && userTotal <= 21) {
+					textField = new JTextField("Yay! You win!");
+					textField.setForeground(Color.BLACK);
+					layout.setConstraints( textField, c);
+				}
+				
+				//when computer's total is over 21, but user's total is under 21
+				if(compTotal > 21 && userTotal <= 21) {
+					textField = new JTextField("You win because I went over!");
+					textField.setForeground(Color.BLACK);
+					layout.setConstraints( textField, c);
+				}
+				
+				//when both player's totals are over 21
+				if(userTotal > 21 && compTotal > 21) {
+					textField = new JTextField("Boo :( We both lose!");
+					textField.setForeground(Color.BLACK);
+					layout.setConstraints( textField, c);
+				}
 			}
         }
 	}
