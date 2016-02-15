@@ -103,6 +103,7 @@ public class GameOfTwentyOne {
         frame.setVisible( true );
 		
 
+	}
 	
 	static class SuperListener implements ActionListener {
 
@@ -110,56 +111,55 @@ public class GameOfTwentyOne {
 	            JButton eventSource = (JButton)e.getSource();
 	         
 	            switch( e.getActionCommand() ){
-	            case "Roll again":
-	            	if( total <= 21 ){
-	            	DieOne.roll(); // user can choose to roll the dice until their score is over 21
+	            	case "Roll again":
+	            		if( total <= 21 ){
+	            		DieOne.roll(); // user can choose to roll the dice until their score is over 21
 	    			
-	    			total += DieOne.getValue();
+	            		total += DieOne.getValue();
 	    		
-	    			DieTwo.roll();
-	    			total += DieTwo.getValue(); // dice rolls for user
+	    				DieTwo.roll();
+	    				total += DieTwo.getValue(); // dice rolls for user
 	    		
-	    			DieOne.roll();
-	    			computer += DieOne.getValue();
+	    				DieOne.roll();
+	    				computer += DieOne.getValue();
 	    		
-	    			DieTwo.roll();
-	    			computer += DieTwo.getValue(); // secret dice rolls for computer
+	    				DieTwo.roll();
+	    				computer += DieTwo.getValue(); // secret dice rolls for computer
 	           
-	    			label.setText( "You're new total is " + total + ". Roll again?" );
-	            	}
-	            case "Hold":
-	            	label.setText( "My total is " + computer + ". Yours is " + total + ".");
+	    				label.setText( "You're new total is " + total + ". Roll again?" );
+	            		}
+	            	case "Hold":
+	            		label.setText( "My total is " + computer + ". Yours is " + total + ".");
             	    
-	            	if ( total > computer && total <= 21 ){
-	    				otherLabel.setText( "You win!!" ); 
-	    				// user winning when neither player goes over 21
-	    				wins ++; // user's wins
+	            		if ( total > computer && total <= 21 ){
+	            			otherLabel.setText( "You win!!" ); 
+	            			// user winning when neither player goes over 21
+	            			wins ++; // user's wins
 	    			
-	    			} else if( computer > total && computer <= 21 ){
-	    				otherLabel.setText( "I WIN!! Not like I cheated or anything.." ); 
-	    				// computer winning when neither player goes over 21
+	            		} else if( computer > total && computer <= 21 ){
+	            			otherLabel.setText( "I WIN!! Not like I cheated or anything.." ); 
+	            			// computer winning when neither player goes over 21
+	            			
+	            		} else if( total == computer && total <= 21 ){
+	            			otherLabel.setText( "We tied!" ); // Players tie, no one wins
 	    		
-	    			} else if( total == computer && total <= 21 ){
-	    				otherLabel.setText( "We tied!" ); // Players tie, no one wins
+	            		} else if( total > 21 && computer <= 21 ){
+	            			otherLabel.setText( "You went over 21! I win:P" );
+	            			// User goes over 21, computer automatically wins
 	    		
-	    			} else if( total > 21 && computer <= 21 ){
-	    				otherLabel.setText( "You went over 21! I win:P" );
-	    				// User goes over 21, computer automatically wins
-	    		
-	    			} else if( computer > 21 && total <= 21 ){
-	    				otherLabel.setText( "I went over 21! I guess you win." ); 
-	    				// user wins when computer goes over 21
-	    				wins ++; // user's wins
+	            		} else if( computer > 21 && total <= 21 ){
+	            			otherLabel.setText( "I went over 21! I guess you win." ); 
+	            			// user wins when computer goes over 21
+	            			wins ++; // user's wins
 	    			
-	    			} else if( computer > 21 && total > 21 ){
-	    				otherLabel.setText( "We both lose!" ); // everyone is sad
-	    			}
-	            case  "Quit":
-	            	System.out.println( "You won " + wins + " out of " + count + " games!" );
-	        		System.out.println( "Goodbye!" );
-	        		System.exit(0);
-	            }
-	        }
+	            		} else if( computer > 21 && total > 21 ){
+	            			otherLabel.setText( "We both lose!" ); // everyone is sad
+	            		}
+	            	case  "Quit":
+	            		System.out.println( "You won " + wins + " out of " + count + " games!" );
+	            		System.out.println( "Goodbye!" );
+	            		System.exit(0);
+	            	}
 	      } 
 	 }
 
