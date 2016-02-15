@@ -1,19 +1,22 @@
+/*
 import java.util.Random;// needed for Random object
 import java.util.Scanner; // needed for Scanner object
 
 /**
  * 
  */
-
+/*
 /**
  * @author David Herr
  * This program is game of twenty one played against the computer
  */
+/*
 public class GameOfTwentyOne {
 
 	/**
 	 * @param args
 	 */
+/*
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
@@ -113,6 +116,7 @@ public class GameOfTwentyOne {
 		 * The constructor performs an initial roll of the die.
 		 * @param numSides The number of sides for this die
 		 */
+/*
 		public DieJava( int numSides ){
 			sides = numSides;
 			roll();
@@ -121,7 +125,7 @@ public class GameOfTwentyOne {
 		/**
 		 * The roll method simulates the rolling of the die
 		 */
-		
+		/*
 		public void roll(){
 			Random rnd = new Random(); // creates random object
 			
@@ -133,7 +137,7 @@ public class GameOfTwentyOne {
 		 * getSides method
 		 * @return The number of sides for for this dice
 		 */
-		
+		/*
 		public int getSides(){
 			return sides;
 		}
@@ -142,7 +146,7 @@ public class GameOfTwentyOne {
 		 * getValue method
 		 * @return The value of the die
 		 */
-		
+		/*
 		public int getValue(){
 			return value;			
 		}
@@ -167,7 +171,7 @@ import javax.swing.*;
  * @author SJHSStudent
  *
  */
-
+/*
 public class GameofTwentyOneGui {
 
 	 	static JLabel myLabel;
@@ -181,6 +185,7 @@ public class GameofTwentyOneGui {
 	/**
 	 * @param args
 	 */
+/*
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		  // Create a window for our app
@@ -347,7 +352,7 @@ public class GameofTwentyOneGui {
 				 * The constructor performs an initial roll of the die.
 				 * @param numSides The number of sides for this die
 				 */
-        
+        /*
 				public DieJava( int numSides ){
 					sides = numSides;
 					roll();
@@ -356,7 +361,7 @@ public class GameofTwentyOneGui {
 				/**
 				 * The roll method simulates the rolling of the die
 				 */
-				
+				/*
 				public void roll(){
 					Random rnd = new Random(); // creates random object
 					
@@ -368,7 +373,7 @@ public class GameofTwentyOneGui {
 				 * getSides method
 				 * @return The number of sides for for this dice
 				 */
-				
+				/*
 				public int getSides(){
 					return sides;
 				}
@@ -377,7 +382,7 @@ public class GameofTwentyOneGui {
 				 * getValue method
 				 * @return The value of the die
 				 */
-				
+				/*
 				public int getValue(){
 					return value;			
 				}
@@ -407,6 +412,7 @@ public class GameofTwentyOneGui {
 	    
 	}
 }
+*/
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -421,7 +427,7 @@ import javax.swing.*;
  *
  */
 
-public class GameofTwentyOneGui {
+public class GameOfTwentyOne {
 
 	static JLabel myLabel;
 	static JButton myButton;
@@ -440,7 +446,7 @@ public class GameofTwentyOneGui {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		// Create a window for our app
-		JFrame myFrame = new JFrame("Example 11.1");
+		JFrame myFrame = new JFrame("Game of Twenty One");
 		// Set it to quit the app when we close the window
 		// NOTE that this is the default behavior--we could omit this here
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -523,6 +529,7 @@ public class GameofTwentyOneGui {
 		 * 
 		 * @param numSides
 		 *            The number of sides for this die
+		 * @return 
 		 */
 
 		public DieJava(int numSides) {
@@ -534,7 +541,7 @@ public class GameofTwentyOneGui {
 		 * The roll method simulates the rolling of the die
 		 */
 
-		public void roll() {
+		 public void roll() {
 			Random rnd = new Random(); // creates random object
 
 			// Get a random value for the die
@@ -568,7 +575,7 @@ public class GameofTwentyOneGui {
 		public void actionPerformed(ActionEvent e) {
 			JButton eventSource = (JButton) e.getSource();
 
-			if (eventSource.getText().equals("Roll Dice")) {
+			if (eventSource.getText().equals("Press to roll the dice")) {
 				die.roll(); // rolls die for computer
 				die2.roll(); // rolls die for user
 				drollcomp += die.getValue(); // sets value of computers score to
@@ -591,31 +598,38 @@ public class GameofTwentyOneGui {
 				if (droll == 21) {
 					myTextField.setText(" Congratulations! You Win! " + " The computer had : " + drollcomp
 							+ " Your score is: " + droll);
+					droll = 0;
+					drollcomp = 0;
 
 				}
 				if (drollcomp == 21) {
 					myTextField.setText(
 							" Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll);
-
+					droll = 0;
+					drollcomp = 0;
 				}
 				if (drollcomp == 21 && droll == 21) {
 					myTextField.setText(
 							" Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll);
-
+					droll = 0;
+					drollcomp = 0;
 				}
 				if (droll > 21 && drollcomp > 21 && droll < drollcomp) {
 					myTextField.setText(" Congratulations! You Win! " + " The computer had : " + drollcomp
 							+ " Your score is: " + droll);
-
+					droll = 0;
+					drollcomp = 0;
 				}
 				if (droll > 21 && drollcomp > 21 && droll > drollcomp) {
 					myTextField.setText(
 							" Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll);
-
+					droll = 0;
+					drollcomp = 0;
 				}
 				if (droll == 21 && drollcomp == 21) {
 					myTextField.setText(" Both scores are 21, it's a draw! ");
-
+					droll = 0;
+					drollcomp = 0;
 				}
 
 				// All if loops below to the beginning of the DieJava class also
@@ -623,44 +637,53 @@ public class GameofTwentyOneGui {
 				if (droll > 21 && drollcomp < 21) {
 					myTextField.setText(
 							" Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll);
-
+					droll = 0;
+					drollcomp = 0;
 				}
 				if (drollcomp > 21 && droll < 21) {
 					myTextField.setText(" Congratulations! You Win! " + " The computer had : " + drollcomp
 							+ " Your score is: " + droll);
-
+					droll = 0;
+					drollcomp = 0;
 				}
 				if (droll > 21 && drollcomp > 21 && droll < drollcomp) {
 					myTextField.setText(" Congratulations! You Win! " + " The computer had : " + drollcomp
 							+ " Your score is: " + droll);
-
+					droll = 0;
+					drollcomp = 0;
 				}
 				if (droll > 21 && drollcomp > 21 && drollcomp > droll) {
 					myTextField.setName(" Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll);
-
+					droll = 0;
+					drollcomp = 0;
 				}
 				if (droll > drollcomp && droll < 21) {
 					myTextField.setText(" Congratulations! You Win! " + " The computer had : " + drollcomp
 							+ " Your score is: " + droll);
-
+					droll = 0;
+					drollcomp = 0;
 				}
 				if (droll < drollcomp && droll < 21) {
 					myTextField.setText(
 							" Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll);
-
+					droll = 0;
+					drollcomp = 0;
 				}
 				if (droll < 21 && drollcomp > 21) {
 					myTextField.setText(" Congratulations! You Win! " + " The computer had : " + drollcomp
 							+ " Your score is: " + droll);
-
+					droll = 0;
+					drollcomp = 0;
 				}
 				if (droll > 21 && drollcomp > 21 && droll == drollcomp) {
 					myTextField.setText(" Both scores are " + droll + " it's a draw! ");
-
+					droll = 0;
+					drollcomp = 0;
 				} else {
 					if (droll < drollcomp) {
 						myTextField.setText("Congratulations! You win!");
-
+						droll = 0;
+						drollcomp = 0;
 					}
 				}
 			}
