@@ -61,18 +61,17 @@ public class GameOfTwentyOne {
 	
 		DieTwo.roll();
 		computer += DieTwo.getValue(); // secret dice rolls for computer
-		
-		
-		
-		
-		System.out.print( "You're total is " + total +"." ); // telling people their score
 	    
+		//Maybe add a new button here saying ok or something to continue with the program?
 	    label = new JLabel( "Let's play a Game of 21! It's like blackjack but with simulated dice!" );
-	    label.equals( "You're total is " + total +"." ); // telling people their score 
+	    label.setFont( new Font("TimesRoman", Font.PLAIN, 18) );
+        layout.setConstraints( label, c );
+	    frame.add( label );
+
+	    label.setText( "You're total is " + total +"." ); // telling people their score 
 	    
 	    label.setFont( new Font("TimesRoman", Font.PLAIN, 18) );
         layout.setConstraints( label, c );
-        // Now add it to the frame (ALSO IMPORTANT!!!!!!!)
         frame.add( label );
         
         c.gridwidth = GridBagConstraints.REMAINDER;
