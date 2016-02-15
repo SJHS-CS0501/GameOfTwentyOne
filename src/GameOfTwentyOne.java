@@ -20,16 +20,13 @@ public class GameOfTwentyOne {
 	static JButton roll;
 	static JTextField textField;
 	static JButton hold;
-	//static JButton quit;
 	static GridBagLayout layout;
 	static JLabel otherLabel;
 	
 	static int total = 0; // user's total
 	static Dice DieOne = new Dice(6); // first roll
 	static Dice DieTwo = new Dice(6); // second roll
-	static int count = 0; // to count the number of games played
 	static int computer = 0; // computer's total
-	static int wins = 0; // user's wins
 	
 	/**
 	 * This is the main class for GameOfTwentyOne program.
@@ -37,23 +34,25 @@ public class GameOfTwentyOne {
 	 */
 	public static void main(String[] args) {
 
-		JFrame frame = new JFrame( "Game of 21" );
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		JFrame frame = new JFrame( "Game of 21" ); // setting frame
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // close frame for default
 		
-		layout = new GridBagLayout();
+		layout = new GridBagLayout(); // used GridBag layout
 	    frame.setLayout( layout );
 	        
-	    GridBagConstraints c = new GridBagConstraints();
+	    GridBagConstraints c = new GridBagConstraints(); // setting contraints for a while
 	    c.fill = GridBagConstraints.BOTH;
 	        
 	    c.weightx = 0.0;
 	    c.gridwidth = GridBagConstraints.RELATIVE;
 	    
-        label = new JLabel( "Let's play a Game of 21! It's like blackjack but with simulated dice!" );
+        // this doesn't actually work right now because it gets written over later
+	    label = new JLabel( "Let's play a Game of 21! It's like blackjack but with simulated dice!" );
 	    label.setFont( new Font("TimesRoman", Font.PLAIN, 18) );
         layout.setConstraints( label, c );
 	    frame.add( label );
         
+	    // adding roll again button and its constraints
 	    c.gridwidth = GridBagConstraints.RELATIVE;
         roll = new JButton( "Roll again" );
         roll.setFont(new Font("TimesRoman", Font.PLAIN, 12));
@@ -62,6 +61,7 @@ public class GameOfTwentyOne {
         layout.setConstraints( roll, c );
         frame.add( roll );
         
+        // adding hold button and its constraints
         c.gridwidth = GridBagConstraints.REMAINDER;
         hold = new JButton( "Hold" );
         hold.setFont(new Font("TimesRoman", Font.PLAIN, 12));
@@ -69,14 +69,17 @@ public class GameOfTwentyOne {
         layout.setConstraints( hold, c );
         frame.add( hold );
         
+        // adding other label so I can have two wordie things
         otherLabel = new JLabel( " " );
         otherLabel.setFont( new Font("TimesRoman", Font.PLAIN, 18) );
         layout.setConstraints( otherLabel, c );
         frame.add( otherLabel );
         
-        frame.pack();
+        // everything gets packed happily into frame and frame size can be changed
+        frame.pack(); 
         frame.setSize( frame.getPreferredSize() );
         
+        // original rolling
 	    DieOne.roll(); // user can choose to roll the dice until their score is over 21
 		
 		total += DieOne.getValue();
@@ -90,8 +93,6 @@ public class GameOfTwentyOne {
 		DieTwo.roll();
 		computer += DieTwo.getValue(); // secret dice rolls for computer
 	    
-		//Maybe add a new button here saying ok or something to continue with the program?
-	    
 
 	    label.setText( "You're total is " + total +"." ); // telling people their score 
 	    
@@ -99,19 +100,16 @@ public class GameOfTwentyOne {
         layout.setConstraints( label, c );
         frame.add( label );
         
-        
-        frame.setVisible( true );
-		
-
+        // make the whole thing visible because we don't want to play an invisible game
+        frame.setVisible( true ); 
 	}
 	
 	static class SuperListener implements ActionListener {
 
 	        public void actionPerformed(ActionEvent e) {
-	            JButton eventSource = (JButton)e.getSource();
 	         
-	            switch( e.getActionCommand() ){
-	            	case "Roll again":
+	            switch( e.getActionCommand() ){ // using a cool little switch
+	            	case "Roll again": // roll again
 	            		if( total <= 21 ){
 	            		DieOne.roll(); // user can choose to roll the dice until their score is over 21
 	    			
@@ -126,15 +124,17 @@ public class GameOfTwentyOne {
 	    				DieTwo.roll();
 	    				computer += DieTwo.getValue(); // secret dice rolls for computer
 	           
+	    				// option to roll again
 	    				label.setText( "You're new total is " + total + ". Roll again?" );
 	            		}
-	            	case "Hold":
+	            		break; // Switches need breaks. This is very serious.
+	            	case "Hold": // no more rolling
+	            		// showing the totals
 	            		label.setText( "My total is " + computer + ". Yours is " + total + ".");
             	    
 	            		if ( total > computer && total <= 21 ){
 	            			otherLabel.setText( "You win!!" ); 
 	            			// user winning when neither player goes over 21
-	            			wins ++; // user's wins
 	    			
 	            		} else if( computer > total && computer <= 21 ){
 	            			otherLabel.setText( "I WIN!! Not like I cheated or anything.." ); 
@@ -150,16 +150,16 @@ public class GameOfTwentyOne {
 	            		} else if( computer > 21 && total <= 21 ){
 	            			otherLabel.setText( "I went over 21! I guess you win." ); 
 	            			// user wins when computer goes over 21
-	            			wins ++; // user's wins
 	    			
 	            		} else if( computer > 21 && total > 21 ){
 	            			otherLabel.setText( "We both lose!" ); // everyone is sad
-	            		}
-	            	case  "Quit":
-	            		System.out.println( "You won " + wins + " out of " + count + " games!" );
-	            		System.out.println( "Goodbye!" );
-	            		System.exit(0);
-	            	}
+	            		} break;
+	            	//case  "Quit":
+	            	//	System.out.println( "You won " + wins + " out of " + count + " games!" );
+	            	//	System.out.println( "Goodbye!" );
+	            	//	System.exit(0);
+	            	//break;
+	            }
 	      } 
 	 }
 
