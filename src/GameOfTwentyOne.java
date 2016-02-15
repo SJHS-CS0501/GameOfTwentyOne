@@ -434,11 +434,13 @@ public class GameOfTwentyOne {
 	static JButton myButton2;
 	static JTextField myTextField;
 	static JButton textFieldUpdate;
-	static GridBagLayout layout;
+	static GridBagLayout layout; 
 	static int drollcomp = 0; // variable for the computers score
 	static int droll = 0; // variable for the users score
-	static DieJava die;
-	static DieJava die2;
+	static DieJava die = new DieJava(6); // creates a new variable die of the die
+	// java class
+static DieJava die2 = new DieJava(6); // creates a new variable die2 of the die
+	// java class
 
 	/**
 	 * @param args
@@ -462,7 +464,7 @@ public class GameOfTwentyOne {
 		c.fill = GridBagConstraints.BOTH;
 
 		// label constraints
-		c.weightx = 0.0;
+		c.weightx = 5.0;
 		c.gridwidth = GridBagConstraints.RELATIVE;
 		// OK, now let's add a label
 		myLabel = new JLabel("Welcome to twenty-one with dice! ");
@@ -479,6 +481,9 @@ public class GameOfTwentyOne {
 		// make button
 		myButton = new JButton("Press to roll the dice");
 		myButton2 = new JButton("Press to stop");
+		Dimension maximumSize = (5 , 5);
+		myButton.setMaximumSize(maximumSize);
+		myButton2.setMaximumSize(maximumSize);
 		myButton.setFont(new Font("TimesRoman", Font.ITALIC, 12));
 		myButton2.setFont(new Font("TimesRoman", Font.ITALIC, 12));
 
@@ -511,10 +516,7 @@ public class GameOfTwentyOne {
 
 		Scanner keyboard = new Scanner(System.in); // creates scanner object
 		Random rnd = new Random(); // creates random object
-		DieJava die = new DieJava(6); // creates a new variable die of the die
-										// java class
-		DieJava die2 = new DieJava(6); // creates a new variable die2 of the die
-										// java class
+		
 
 		System.out.println("Welcome to twenty-one with dice! ");
 
