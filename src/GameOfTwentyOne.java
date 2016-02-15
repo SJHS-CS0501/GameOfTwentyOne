@@ -17,9 +17,9 @@ import java.awt.event.*;
 public class GameOfTwentyOne {
 
 	static JLabel label;
-	static JButton button;
+	static JButton roll;
 	static JTextField textField;
-	static JButton end;
+	static JButton hold;
 	static JButton quit;
 	static GridBagLayout layout;
 	
@@ -76,14 +76,21 @@ public class GameOfTwentyOne {
         frame.add( label );
         
         c.gridwidth = GridBagConstraints.REMAINDER;
-        button = new JButton( "Roll again" );
-        button.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+        roll = new JButton( "Roll again" );
+        roll.setFont(new Font("TimesRoman", Font.PLAIN, 12));
 
         ActionListener listener = new SuperListener();
-        button.addActionListener(listener);
+        roll.addActionListener(listener);
+        //hold.addActionListener(listener);
+        //quit.addActionListener(listener);
 
-        layout.setConstraints( button, c );
-        frame.add( button );
+        layout.setConstraints( roll, c );
+        //layout.setConstraints( hold, c );
+       // layout.setConstraints( quit, c );
+        
+        frame.add( roll );
+        //frame.add( hold );
+        //frame.add( quit );
 
         frame.pack();
         frame.setSize( frame.getPreferredSize() );
