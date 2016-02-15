@@ -15,13 +15,14 @@ import java.awt.event.*;
  *
  */
 public class GameOfTwentyOne {
-
+	
 	static JLabel label;
 	static JButton roll;
 	static JTextField textField;
 	static JButton hold;
-	static JButton quit;
+	//static JButton quit;
 	static GridBagLayout layout;
+	static JLabel otherLabel;
 	
 	static int total = 0; // user's total
 	static Dice DieOne = new Dice(6); // first roll
@@ -47,8 +48,35 @@ public class GameOfTwentyOne {
 	        
 	    c.weightx = 0.0;
 	    c.gridwidth = GridBagConstraints.RELATIVE;
-		
 	    
+        label = new JLabel( "Let's play a Game of 21! It's like blackjack but with simulated dice!" );
+	    label.setFont( new Font("TimesRoman", Font.PLAIN, 18) );
+        layout.setConstraints( label, c );
+	    frame.add( label );
+        
+	    c.gridwidth = GridBagConstraints.RELATIVE;
+        roll = new JButton( "Roll again" );
+        roll.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+        ActionListener listener = new SuperListener();
+        roll.addActionListener(listener);
+        layout.setConstraints( roll, c );
+        frame.add( roll );
+        
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        hold = new JButton( "Hold" );
+        hold.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+        hold.addActionListener(listener);
+        layout.setConstraints( hold, c );
+        frame.add( hold );
+        
+        otherLabel = new JLabel( " " );
+        otherLabel.setFont( new Font("TimesRoman", Font.PLAIN, 18) );
+        layout.setConstraints( otherLabel, c );
+        frame.add( otherLabel );
+        
+        frame.pack();
+        frame.setSize( frame.getPreferredSize() );
+        
 	    DieOne.roll(); // user can choose to roll the dice until their score is over 21
 		
 		total += DieOne.getValue();
@@ -63,10 +91,7 @@ public class GameOfTwentyOne {
 		computer += DieTwo.getValue(); // secret dice rolls for computer
 	    
 		//Maybe add a new button here saying ok or something to continue with the program?
-	    label = new JLabel( "Let's play a Game of 21! It's like blackjack but with simulated dice!" );
-	    label.setFont( new Font("TimesRoman", Font.PLAIN, 18) );
-        layout.setConstraints( label, c );
-	    frame.add( label );
+	    
 
 	    label.setText( "You're total is " + total +"." ); // telling people their score 
 	    
@@ -74,103 +99,19 @@ public class GameOfTwentyOne {
         layout.setConstraints( label, c );
         frame.add( label );
         
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        roll = new JButton( "Roll again" );
-        roll.setFont(new Font("TimesRoman", Font.PLAIN, 12));
-
-        ActionListener listener = new SuperListener();
-        roll.addActionListener(listener);
-        //hold.addActionListener(listener);
-        //quit.addActionListener(listener);
-
-        layout.setConstraints( roll, c );
-        //layout.setConstraints( hold, c );
-       // layout.setConstraints( quit, c );
-        
-        frame.add( roll );
-        //frame.add( hold );
-        //frame.add( quit );
-
-        frame.pack();
-        frame.setSize( frame.getPreferredSize() );
-        
-        
-        
         
         frame.setVisible( true );
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-/**		do{	do { DieOne.roll(); // user can choose to roll the dice until their score is over 21
-			
-			total += DieOne.getValue();
-		
-			DieTwo.roll();
-			total += DieTwo.getValue(); // dice rolls for user
-		
-			DieOne.roll();
-			computer += DieOne.getValue();
-		
-			DieTwo.roll();
-			computer += DieTwo.getValue(); // secret dice rolls for computer
-			
-			
-			
-			
-			System.out.print( "You're total is " + total +"." ); // telling people their score
-		
-			System.out.println( "My total is " + computer + ". Yours is " + total + ".");
-			// secret computer score revealed
-		
-			if( total > computer && total <= 21 ){
-				System.out.println( "You win!!" ); 
-				// user winning when neither player goes over 21
-				wins ++; // user's wins
-			
-			} else if( computer > total && computer <= 21 ){
-				System.out.println( "I WIN!! Not like I cheated or anything.." ); 
-				// computer winning when neither player goes over 21
-		
-			} else if( total == computer && total <= 21 ){
-				System.out.println( "We tied!" ); // Players tie, no one wins
-		
-			} else if( total > 21 && computer <= 21 ){
-				System.out.println( "You went over 21! I win:P" );
-				// User goes over 21, computer automatically wins
-		
-			} else if( computer > 21 && total <= 21 ){
-				System.out.println( "I went over 21! I guess you win." ); 
-				// user wins when computer goes over 21
-				wins ++; // user's wins
-			
-			} else if( computer > 21 && total > 21 ){
-				System.out.println( "We both lose!" ); // everyone is sad
-			}
-			
-			System.out.print( "Would you like to play again?" );
-			//cont = keyboard.nextLine();
-			
-			total = 0;
-			computer = 0; // resets total and computer for next game
-			count ++; // games played
-	
-*/	}
+
 	
 	 static class SuperListener implements ActionListener {
 
 	        public void actionPerformed(ActionEvent e) {
 	            JButton eventSource = (JButton)e.getSource();
-	            if( eventSource.equals( "Roll again" ) && total <= 21 ) {
-	            	
+	         
+	            switch( e.getActionCommand() ){
+	            case "Roll again":
+	            	if( total <= 21 ){
 	            	DieOne.roll(); // user can choose to roll the dice until their score is over 21
 	    			
 	    			total += DieOne.getValue();
@@ -184,40 +125,41 @@ public class GameOfTwentyOne {
 	    			DieTwo.roll();
 	    			computer += DieTwo.getValue(); // secret dice rolls for computer
 	           
-	    			label = new JLabel( "You're total is " + total + ". Roll again?" );
-	            } else if (eventSource.equals( "Hold" )){
-	            	System.out.println( "My total is " + computer + ". Yours is " + total + ".");
-	            	            	
+	    			label.setText( "You're new total is " + total + ". Roll again?" );
+	            	}
+	            case "Hold":
+	            	label.setText( "My total is " + computer + ". Yours is " + total + ".");
+            	    
 	            	if ( total > computer && total <= 21 ){
-	    				System.out.println( "You win!!" ); 
+	    				otherLabel.setText( "You win!!" ); 
 	    				// user winning when neither player goes over 21
 	    				wins ++; // user's wins
 	    			
 	    			} else if( computer > total && computer <= 21 ){
-	    				System.out.println( "I WIN!! Not like I cheated or anything.." ); 
+	    				otherLabel.setText( "I WIN!! Not like I cheated or anything.." ); 
 	    				// computer winning when neither player goes over 21
 	    		
 	    			} else if( total == computer && total <= 21 ){
-	    				System.out.println( "We tied!" ); // Players tie, no one wins
+	    				otherLabel.setText( "We tied!" ); // Players tie, no one wins
 	    		
 	    			} else if( total > 21 && computer <= 21 ){
-	    				System.out.println( "You went over 21! I win:P" );
+	    				otherLabel.setText( "You went over 21! I win:P" );
 	    				// User goes over 21, computer automatically wins
 	    		
 	    			} else if( computer > 21 && total <= 21 ){
-	    				System.out.println( "I went over 21! I guess you win." ); 
+	    				otherLabel.setText( "I went over 21! I guess you win." ); 
 	    				// user wins when computer goes over 21
 	    				wins ++; // user's wins
 	    			
 	    			} else if( computer > 21 && total > 21 ){
-	    				System.out.println( "We both lose!" ); // everyone is sad
+	    				otherLabel.setText( "We both lose!" ); // everyone is sad
 	    			}
-	            
-	            } else if( eventSource.equals( "Quit" )){
+	            case  "Quit":
 	            	System.out.println( "You won " + wins + " out of " + count + " games!" );
 	        		System.out.println( "Goodbye!" );
 	        		System.exit(0);
 	            }
+	        }
 	      } 
 	 }
 
