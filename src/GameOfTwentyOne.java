@@ -458,6 +458,7 @@ static DieJava die2 = new DieJava(6); // creates a new variable die2 of the die
 		// myFrame.setLayout( new GridLayout( 2, 2, 50, 10 ) );
 		layout = new GridBagLayout();
 		myFrame.setLayout(layout);
+		myFrame.setSize(500, 500);
 
 		GridBagConstraints c = new GridBagConstraints();
 		// general constraints
@@ -481,9 +482,7 @@ static DieJava die2 = new DieJava(6); // creates a new variable die2 of the die
 		// make button
 		myButton = new JButton("Press to roll the dice");
 		myButton2 = new JButton("Press to stop");
-		Dimension maximumSize = (5 , 5);
-		myButton.setMaximumSize(maximumSize);
-		myButton2.setMaximumSize(maximumSize);
+		myButton.setSize(10, 10);
 		myButton.setFont(new Font("TimesRoman", Font.ITALIC, 12));
 		myButton2.setFont(new Font("TimesRoman", Font.ITALIC, 12));
 
@@ -498,7 +497,7 @@ static DieJava die2 = new DieJava(6); // creates a new variable die2 of the die
 		// text field constraints
 		c.gridwidth = GridBagConstraints.RELATIVE;
 		myTextField = new JTextField("Your current score is: " + droll);
-		layout.setConstraints(myTextField, c);
+		myTextField.setSize(100, 100);
 		myFrame.add(myTextField);
 		myTextField.setEditable(false);
 
