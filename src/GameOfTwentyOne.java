@@ -5,8 +5,6 @@ import javax.swing.*;
 /**
  * This program will allow a user to play a variation of the popular blackjack
  * card game with the computer.
- * 
- * @author woytek
  * @author Woytek
  * @author Julianna Nichols
  */
