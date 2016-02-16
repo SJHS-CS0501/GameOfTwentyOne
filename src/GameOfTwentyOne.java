@@ -11,6 +11,7 @@ public class GameOfTwentyOne {
 	
 	static JLabel label;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static ImageIcon firstDie;
 	static ImageIcon secondDie;
 	static JLabel die;
@@ -24,10 +25,15 @@ public class GameOfTwentyOne {
 	static GridBagConstraints c = new GridBagConstraints();
 	ImageIcon dieIcon = new ImageIcon();
 =======
+=======
+>>>>>>> parent of 03eb231... YES
     static JButton button;
     static JTextField textField;
     static GridBagLayout layout;
     static JFrame frame = new JFrame("Game of Twenty-One"); //new JFrame; 
+<<<<<<< HEAD
+>>>>>>> parent of 03eb231... YES
+=======
 >>>>>>> parent of 03eb231... YES
 
 	/**
@@ -45,9 +51,15 @@ public class GameOfTwentyOne {
 	
 		//JFrame frame = new JFrame("Game of Twenty-One"); //new JFrame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+<<<<<<< HEAD
 		
 		frame.setLayout( layout );
 		
+=======
+		
+		frame.setLayout( layout );
+		
+>>>>>>> parent of 03eb231... YES
 		GridBagConstraints c = new GridBagConstraints();
 	    
 	    frame.setVisible(true);
@@ -165,6 +177,7 @@ public class GameOfTwentyOne {
 			ActionListener listener = new RollAgainListener();
 			
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (eventSource.getText().equals("Roll")) {
 				label.setVisible(false);
 				die.setVisible(false);
@@ -246,6 +259,57 @@ public class GameOfTwentyOne {
     			c.gridy = 0; // first row
 				layout.setConstraints( label, c);
 				frame.add(label, c);
+=======
+			JButton eventSource = (JButton)e.getSource();
+			if(eventSource.getText().equals("Roll")) {
+        			roll.roll(); //first die
+        			compTotal += roll.getValue();
+        			roll.roll(); //second die
+        			compTotal += roll.getValue();
+        			
+        			roll.roll(); //first die
+        			userTotal += roll.getValue();
+        			//what to do when the component's display area is larger than the component's requested size
+        			c.fill = GridBagConstraints.BOTH;
+        			c.gridx = 2;
+        			c.gridy = 0;
+        			c.weightx = 0.2; //resizing behavior (column)
+        			c.weighty = 0.2; //resizing behavior (row)
+        			c.gridwidth = 1;
+        			textField.setText("You rolled an " + roll.getValue() + "!");
+        			textField.setForeground(Color.BLACK);
+        			frame.add(textField, c);
+        			
+        			roll.roll(); //second die
+        			userTotal += roll.getValue();
+        			//what to do when the component's display area is larger than the component's requested size
+        			c.fill = GridBagConstraints.BOTH;
+        			c.gridx = 2;
+        			c.gridy = 0;
+        			c.weightx = 0.2; //resizing behavior (column)
+        			c.weighty = 0.2; //resizing behavior (row)
+        			c.gridwidth = 1;
+        			textField.setText("You rolled an " + roll.getValue() + "!");
+        			textField.setForeground(Color.BLACK);
+        			frame.add(textField, c);
+        			
+        			textField = new JTextField("Do you want to roll again?");
+        			textField.setForeground(Color.BLACK);
+        			textField.setFont(new Font("TimesRoman", Font.PLAIN, 24));
+        			// what to do when the component's display area is larger than the component's requested size
+        			c.fill = GridBagConstraints.BOTH;
+        			c.weightx = 0.2; // resizing behavior (column)
+        			c.weighty = 0.2; // resizing behavior (row)
+        			c.gridx = 1;
+        			c.gridy = 1; // first row
+        			frame.add(textField, c);
+			}
+			
+			if(eventSource.getText().equals("No")) {
+				textField = new JTextField("My total was " + compTotal + "!");
+				textField.setForeground(Color.BLACK);
+				layout.setConstraints( textField, c);
+>>>>>>> parent of 03eb231... YES
 =======
 			JButton eventSource = (JButton)e.getSource();
 			if(eventSource.getText().equals("Roll")) {
