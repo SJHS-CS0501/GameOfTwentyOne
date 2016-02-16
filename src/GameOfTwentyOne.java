@@ -1,526 +1,96 @@
-/*
-import java.util.Random;// needed for Random object
-import java.util.Scanner; // needed for Scanner object
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import javax.swing.*;
 
 /**
- * 
+ * This class creates the window for the game of twenty one
  */
-/*
+
 /**
  * @author David Herr
- * This program is game of twenty one played against the computer
- */
-/*
-public class GameOfTwentyOne {
-
-	/**
-	 * @param args
-	 */
-/*
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		Scanner keyboard = new Scanner(System.in); // creates scanner object
-		Random rnd = new Random(); // creates random object
-		DieJava die  = new DieJava( 6 ); // creates a new variable die of the die java class
-		DieJava die2 = new DieJava( 6 ); // creates a new variable die2 of the die java class
-		char userInput; // variable for user input
-		int drollcomp = 0; // variable for the computers score
-		int droll = 0; // variable for the users score
-		
-		System.out.println( "Welcome to twenty-one with dice! " );
-		
-		do{ 
-			System.out.print( "Press 'y' if you want to roll dice, press anything else if you want to quit." ); //asks user if they want to quit or play another round
-			userInput = keyboard.nextLine().toLowerCase().charAt(0); // takes whatever the user inputed for user input, puts it in lower case, and only accepts the first character
-			if( userInput != 'y'){ // if user inputed anything other than y, the program jumps out of the loop
-				break; 
-			}
-			die.roll(); // rolls die for computer
-			die2.roll(); // rolls die for user
-			drollcomp += die.getValue(); // sets value of computers score to die roll
-			droll += die2.getValue(); // sets value of users score equal to die roll
-			die.roll();// rolls die for computer
-			die2.roll();// rolls die for user
-			drollcomp += die.getValue();// sets value of computers score to die roll
-			droll += die2.getValue();// sets value of users score equal to die roll
-			System.out.println( "Your current score is: " + droll ); // tells user their score
-			
-			// All if loops below in this do while loop, determine who wins the game using various cases
-			if( droll == 21 ){ 
-				System.out.println( " Congratulations! You Win! " + " The computer had : " + drollcomp + " Your score is: " + droll );
-				System.exit(0);
-			}
-			if( drollcomp == 21){
-				System.out.println( " Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-				System.exit(0);
-			}
-			if( drollcomp == 21 && droll == 21 ){
-				System.out.println( " Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-				System.exit(0);
-			}
-			if( droll > 21 && drollcomp > 21 && droll < drollcomp ){
-				System.out.println( " Congratulations! You Win! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-				System.exit(0);
-			}
-			if( droll > 21 && drollcomp > 21 && droll > drollcomp ){
-				System.out.println( " Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-				System.exit(0);
-			}
-			if(droll == 21 && drollcomp == 21){
-				System.out.println(  " Both scores are 21, it's a draw! " );
-				System.exit(0);
-			}
-		}while( droll < 21 && drollcomp < 21 );
-			
-		// All if loops below to the beginning of the DieJava class also determine who wins
-		if( droll > 21 && drollcomp < 21 ){
-			System.out.println( " Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-			System.exit(0);
-		}
-		if( drollcomp > 21 && droll < 21 ){
-			System.out.println( " Congratulations! You Win! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-		System.exit(0);
-		}
-		if( droll > 21 && drollcomp > 21 && droll < drollcomp ){
-			System.out.println( " Congratulations! You Win! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-			System.exit(0);
-		}
-		if( droll > 21 && drollcomp > 21 && drollcomp > droll ){
-			System.out.println( " Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-			System.exit(0);
-		}
-		if( droll > drollcomp && droll < 21){
-			System.out.println( " Congratulations! You Win! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-			System.exit(0);
-		}
-		if( droll < drollcomp && droll < 21){
-			System.out.println( " Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-			System.exit(0);
-		}
-		if( droll < 21 && drollcomp > 21 ){
-			System.out.println( " Congratulations! You Win! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-			System.exit(0);
-		}
-		if( droll > 21 && drollcomp > 21 && droll == drollcomp ){
-			System.out.println(  " Both scores are " + droll + " it's a draw! " );
-			System.exit(0);
-		}
-	}	
-	
-	public static class DieJava {
-		private int sides; // Number of sides
-		private int value; //The die's value
-		
-		/**
-		 * The constructor performs an initial roll of the die.
-		 * @param numSides The number of sides for this die
-		 */
-/*
-		public DieJava( int numSides ){
-			sides = numSides;
-			roll();
-		}
-		
-		/**
-		 * The roll method simulates the rolling of the die
-		 */
-		/*
-		public void roll(){
-			Random rnd = new Random(); // creates random object
-			
-			// Get a random value for the die
-			value = rnd.nextInt( sides ) + 1;
-		}
-		
-		/**
-		 * getSides method
-		 * @return The number of sides for for this dice
-		 */
-		/*
-		public int getSides(){
-			return sides;
-		}
-		
-		/**
-		 * getValue method
-		 * @return The value of the die
-		 */
-		/*
-		public int getValue(){
-			return value;			
-		}
-}
-
-	
-}
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
-
-
-
-
-
-/**
- * 
- */
-
-/**
- * @author SJHSStudent
- *
- */
-/*
-public class GameofTwentyOneGui {
-
-	 	static JLabel myLabel;
-	    static JButton myButton;
-	    static JButton myButton2;
-	    static JTextField myTextField;
-	    static JButton textFieldUpdate;
-	    static GridBagLayout layout;
-	    static int drollcomp = 0; // variable for the computers score
-		static int droll = 0; // variable for the users score
-	/**
-	 * @param args
-	 */
-/*
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		  // Create a window for our app
-        JFrame myFrame = new JFrame("Example 11.1");
-        // Set it to quit the app when we close the window
-        // NOTE that this is the default behavior--we could omit this here
-        myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // make it visible (important!)
-        myFrame.setVisible( true );
-        //myFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
-        //myFrame.setLayout( new GridLayout( 2, 2, 50, 10 ) );
-        layout = new GridBagLayout();
-        myFrame.setLayout( layout );
-        
-        GridBagConstraints c = new GridBagConstraints();
-        // general constraints
-        c.fill = GridBagConstraints.BOTH;
-        
-        // label constraints
-        c.weightx = 0.0;
-        c.gridwidth = GridBagConstraints.RELATIVE;
-        // OK, now let's add a label
-        myLabel = new JLabel("Welcome to twenty-one with dice! ");
-        // let's set some properties
-        // NOTE: These properties (font and color) come from AWT!!!!
-        myLabel.setForeground(Color.BLUE);
-        myLabel.setFont(new Font("TimesRoman", Font.BOLD, 24));
-        layout.setConstraints( myLabel, c );
-        // Now add it to the frame (ALSO IMPORTANT!!!!!!!)
-        myFrame.add(myLabel);
-
-        // button constraints
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        // make button
-        myButton = new JButton("Press to roll the dice");
-        myButton2 = new JButton("Press to stop" );
-        myButton.setFont(new Font("TimesRoman", Font.ITALIC, 12));
-        myButton2.setFont(new Font("TimesRoman", Font.ITALIC, 12));
-
-        ActionListener listener = new MyActionListener();
-        myButton.addActionListener(listener);
-        myButton2.addActionListener(listener);
-        layout.setConstraints( myButton, c);
-        myFrame.add(myButton);
-
-        // text field setup
-        // text field constraints
-        c.gridwidth = GridBagConstraints.RELATIVE;
-        myTextField = new JTextField(  );
-        layout.setConstraints(myTextField, c);
-        myFrame.add( myTextField );
-        
-        // text button add
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        textFieldUpdate = new JButton("Update Label");
-        textFieldUpdate.addActionListener(listener);
-        layout.setConstraints(textFieldUpdate, c);
-        myFrame.add( textFieldUpdate );
-        
-        
-        myFrame.pack();
-        myFrame.setSize( myFrame.getPreferredSize() );
-        // Our size will be wrong, so let's fix it
-        //myFrame.setSize(600, 200);
-        // alternate: use pack
-        //myFrame.pack();
-
-        myFrame.setVisible(true);
-
-   
-
-				Scanner keyboard = new Scanner(System.in); // creates scanner object
-				Random rnd = new Random(); // creates random object
-				DieJava die  = new DieJava( 6 ); // creates a new variable die of the die java class
-				DieJava die2 = new DieJava( 6 ); // creates a new variable die2 of the die java class
-				char userInput; // variable for user input
-			
-				
-				System.out.println( "Welcome to twenty-one with dice! " );
-				
-				do{ 
-					System.out.print( "Press 'y' if you want to roll dice, press anything else if you want to quit." ); //asks user if they want to quit or play another round
-					userInput = keyboard.nextLine().toLowerCase().charAt(0); // takes whatever the user inputed for user input, puts it in lower case, and only accepts the first character
-					if( userInput != 'y'){ // if user inputed anything other than y, the program jumps out of the loop
-						break; 
-					}
-					die.roll(); // rolls die for computer
-					die2.roll(); // rolls die for user
-					drollcomp += die.getValue(); // sets value of computers score to die roll
-					droll += die2.getValue(); // sets value of users score equal to die roll
-					die.roll();// rolls die for computer
-					die2.roll();// rolls die for user
-					drollcomp += die.getValue();// sets value of computers score to die roll
-					droll += die2.getValue();// sets value of users score equal to die roll
-					System.out.println( "Your current score is: " + droll ); // tells user their score
-					
-					// All if loops below in this do while loop, determine who wins the game using various cases
-					if( droll == 21 ){ 
-						System.out.println( " Congratulations! You Win! " + " The computer had : " + drollcomp + " Your score is: " + droll );
-						System.exit(0);
-					}
-					if( drollcomp == 21){
-						System.out.println( " Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-						System.exit(0);
-					}
-					if( drollcomp == 21 && droll == 21 ){
-						System.out.println( " Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-						System.exit(0);
-					}
-					if( droll > 21 && drollcomp > 21 && droll < drollcomp ){
-						System.out.println( " Congratulations! You Win! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-						System.exit(0);
-					}
-					if( droll > 21 && drollcomp > 21 && droll > drollcomp ){
-						System.out.println( " Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-						System.exit(0);
-					}
-					if(droll == 21 && drollcomp == 21){
-						System.out.println(  " Both scores are 21, it's a draw! " );
-						System.exit(0);
-					}
-				}while( droll < 21 && drollcomp < 21 );
-					
-				// All if loops below to the beginning of the DieJava class also determine who wins
-				if( droll > 21 && drollcomp < 21 ){
-					System.out.println( " Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-					System.exit(0);
-				}
-				if( drollcomp > 21 && droll < 21 ){
-					System.out.println( " Congratulations! You Win! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-				System.exit(0);
-				}
-				if( droll > 21 && drollcomp > 21 && droll < drollcomp ){
-					System.out.println( " Congratulations! You Win! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-					System.exit(0);
-				}
-				if( droll > 21 && drollcomp > 21 && drollcomp > droll ){
-					System.out.println( " Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-					System.exit(0);
-				}
-				if( droll > drollcomp && droll < 21){
-					System.out.println( " Congratulations! You Win! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-					System.exit(0);
-				}
-				if( droll < drollcomp && droll < 21){
-					System.out.println( " Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-					System.exit(0);
-				}
-				if( droll < 21 && drollcomp > 21 ){
-					System.out.println( " Congratulations! You Win! " + " The computer had : " + drollcomp + " Your score is: " + droll  );
-					System.exit(0);
-				}
-				if( droll > 21 && drollcomp > 21 && droll == drollcomp ){
-					System.out.println(  " Both scores are " + droll + " it's a draw! " );
-					System.exit(0);
-				}
-			}	
-			
-			public static class DieJava {
-				private int sides; // Number of sides
-				private int value; //The die's value
-				
-				/**
-				 * The constructor performs an initial roll of the die.
-				 * @param numSides The number of sides for this die
-				 */
-        /*
-				public DieJava( int numSides ){
-					sides = numSides;
-					roll();
-				}
-				
-				/**
-				 * The roll method simulates the rolling of the die
-				 */
-				/*
-				public void roll(){
-					Random rnd = new Random(); // creates random object
-					
-					// Get a random value for the die
-					value = rnd.nextInt( sides ) + 1;
-				}
-				
-				/**
-				 * getSides method
-				 * @return The number of sides for for this dice
-				 */
-				/*
-				public int getSides(){
-					return sides;
-				}
-				
-				/**
-				 * getValue method
-				 * @return The value of the die
-				 */
-				/*
-				public int getValue(){
-					return value;			
-				}
-				
-		}
-
-			
-		
-
-	 
-	 class MyActionListener implements ActionListener {
-     
-	        
-	        public void actionPerformed(ActionEvent e) {
-	            //JButton eventSource = (JButton) e.getSource();
-	            //eventSource.setForeground(theColors[index++]);
-	            JButton eventSource = (JButton)e.getSource();
-	            if( eventSource.getText().equals("Roll Dice") ) {
-	            	
-	            } else {
-	                if( droll < drollcomp ){
-	                	System.out.println("Congratulations! You win!" );
-	                
-	          }
-	            }
-	        }
-	    
-	}
-}
-*/
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
-
-/**
- * 
- */
-
-/**
- * @author SJHSStudent
  *
  */
 
 public class GameOfTwentyOne {
 
-	static JLabel myLabel;
-	static JButton myButton;
-	static JButton myButton2;
-	static JTextField myTextField;
-	static JButton textFieldUpdate;
-	static GridBagLayout layout; 
+	static JLabel myLabel; // variable for label 
+	static JButton myButton; // variable for roll dice button
+	static JButton myButton2; // variable for stop button
+	static JTextField myTextField; // variable for text box
+	static JButton textFieldUpdate; // variable to update text bow
+	static GridBagLayout layout; // variable for the gridbag layout
 	static int drollcomp = 0; // variable for the computers score
 	static int droll = 0; // variable for the users score
-	static DieJava die = new DieJava(6); // creates a new variable die of the die
-	// java class
-static DieJava die2 = new DieJava(6); // creates a new variable die2 of the die
-	// java class
-
+	static DieJava die = new DieJava(6); // creates a new variable die of the
+										 // die java class
+	static DieJava die2 = new DieJava(6); // creates a new variable die2 of the
+										// die java class
 	/**
+	 * Main method that creates the window for the game of twenty one
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		// Create a window for our app
-		JFrame myFrame = new JFrame("Game of Twenty One");
-		// Set it to quit the app when we close the window
-		// NOTE that this is the default behavior--we could omit this here
-		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// make it visible (important!)
-		myFrame.setVisible(true);
-		// myFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
-		// myFrame.setLayout( new GridLayout( 2, 2, 50, 10 ) );
-		layout = new GridBagLayout();
-		myFrame.setLayout(layout);
-		myFrame.setSize(500, 500);
-
-		GridBagConstraints c = new GridBagConstraints();
+		JFrame myFrame = new JFrame("Game of Twenty One"); // creates the frame to hold all components
+		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// sets it to close as default
+		myFrame.setVisible(true); // makes the frame visible
+		layout = new GridBagLayout(); // creates a new GridBagLayout
+		myFrame.setLayout(layout); // sets the layout of myFrame according to GridBagLayout
+		GridBagConstraints c = new GridBagConstraints(); // creates a new GridBagRestraint 
 		// general constraints
 		c.fill = GridBagConstraints.BOTH;
 
 		// label constraints
-		c.weightx = 5.0;
-		c.gridwidth = GridBagConstraints.RELATIVE;
-		// OK, now let's add a label
-		myLabel = new JLabel("Welcome to twenty-one with dice! ");
-		// let's set some properties
-		// NOTE: These properties (font and color) come from AWT!!!!
-		myLabel.setForeground(Color.BLUE);
-		myLabel.setFont(new Font("TimesRoman", Font.BOLD, 24));
-		layout.setConstraints(myLabel, c);
-		// Now add it to the frame (ALSO IMPORTANT!!!!!!!)
-		myFrame.add(myLabel);
+		c.weightx = .5; // changes weight of label to receive less space
+		c.gridwidth = GridBagConstraints.RELATIVE; // sets the label to be in the second to last column
+		myLabel = new JLabel("Welcome to twenty-one with dice! "); // creates new label
+		myLabel.setForeground(Color.BLUE); // sets text color
+		myLabel.setFont(new Font("TimesRoman", Font.BOLD, 24)); // sets font, makes font bold, and text size
+		layout.setConstraints(myLabel, c); // sets restraints of the label 
+		myFrame.add(myLabel); // adds label to frame
 
-		// button constraints
-		c.gridwidth = GridBagConstraints.REMAINDER;
-		// make button
-		myButton = new JButton("Press to roll the dice");
-		myButton2 = new JButton("Press to stop");
-		myButton.setSize(10, 10);
-		myButton.setFont(new Font("TimesRoman", Font.ITALIC, 12));
-		myButton2.setFont(new Font("TimesRoman", Font.ITALIC, 12));
+		
+		c.gridwidth = GridBagConstraints.REMAINDER; // button constraints
+		myButton = new JButton("Press to roll the dice"); // creates new button to roll dice
+		myButton2 = new JButton("Press to stop"); // creates new button to stop rolling dice
+		myButton.setFont(new Font("TimesRoman", Font.ITALIC, 12)); // sets font, makes font italicized and font size
+		myButton2.setFont(new Font("TimesRoman", Font.ITALIC, 12)); // sets font, makes font italicized and font size
 
-		ActionListener listener = new MyActionListener();
-		myButton.addActionListener(listener);
-		myButton2.addActionListener(listener);
-		layout.setConstraints(myButton, c);
-		myFrame.add(myButton);
-		myFrame.add(myButton2);
+		ActionListener listener = new MyActionListener(); // creates new ActionListener
+		myButton.addActionListener(listener); //adds ActionListener to button to roll dice
+		myButton2.addActionListener(listener);// adds ActionListener to button to stop rolling dice
+		layout.setConstraints(myButton, c); // more button constraints
+		layout.setConstraints(myButton2, c); // more button constraints
+		myFrame.add(myButton); // adds button to frame
+		myFrame.add(myButton2); // adds button to frame
 
 		// text field setup
-		// text field constraints
-		c.gridwidth = GridBagConstraints.RELATIVE;
-		myTextField = new JTextField("Your current score is: " + droll);
-		myTextField.setSize(100, 100);
-		myFrame.add(myTextField);
-		myTextField.setEditable(false);
+		myTextField = new JTextField("Your current score is: " + droll); // creates new text field and sets text in textfield
+		c.weightx = 1.0; // sets weight for text field to have more weight
+		c.gridwidth = 5; // allocates 5 cells for text field
+		layout.setConstraints(myTextField, c); // text field constraints
+		myFrame.add(myTextField); // adds text field to frame
+		myTextField.setEditable(false); // makes the text field not editable 
+		c.gridwidth = GridBagConstraints.REMAINDER; // text field restraints
 
-		// text button add
-		c.gridwidth = GridBagConstraints.REMAINDER;
-
-		myFrame.pack();
-		myFrame.setSize(myFrame.getPreferredSize());
+		myFrame.pack(); // makes the window to be a certain size
+		myFrame.setSize(myFrame.getPreferredSize()); // sets the size of the window to the proffered size
 		// Our size will be wrong, so let's fix it
-		// myFrame.setSize(600, 200);
+		 myFrame.setSize(500, 150); // resets size of the window to be the desired size
 		// alternate: use pack
 		// myFrame.pack();
 
-		myFrame.setVisible(true);
+		myFrame.setVisible(true); // makes the frame visable
 
-		Scanner keyboard = new Scanner(System.in); // creates scanner object
 		Random rnd = new Random(); // creates random object
-		
-
-		System.out.println("Welcome to twenty-one with dice! ");
 
 	}
-
+/**
+ * This class simulates all of the dice movements, etc. 
+ * @author David Herr
+ *
+ */
 	public static class DieJava {
 		private int sides; // Number of sides
 		private int value; // The die's value
@@ -529,8 +99,8 @@ static DieJava die2 = new DieJava(6); // creates a new variable die2 of the die
 		 * The constructor performs an initial roll of the die.
 		 * 
 		 * @param numSides
-		 *            The number of sides for this die
-		 * @return 
+		 * The number of sides for this die
+		 * @return
 		 */
 
 		public DieJava(int numSides) {
@@ -542,7 +112,7 @@ static DieJava die2 = new DieJava(6); // creates a new variable die2 of the die
 		 * The roll method simulates the rolling of the die
 		 */
 
-		 public void roll() {
+		public void roll() {
 			Random rnd = new Random(); // creates random object
 
 			// Get a random value for the die
@@ -570,7 +140,11 @@ static DieJava die2 = new DieJava(6); // creates a new variable die2 of the die
 		}
 
 	}
-
+/**
+ * This class is for the Action Lister and tells the buttons what to do
+ * @author Owner
+ *
+ */
 	static class MyActionListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
@@ -589,13 +163,10 @@ static DieJava die2 = new DieJava(6); // creates a new variable die2 of the die
 											// die roll
 				droll += die2.getValue();// sets value of users score equal to
 											// die roll
-				myTextField.setText("Your current score is: " + droll); // tells
-																		// user
-																		// their
-																		// score
+				myTextField.setText("Your current score is: " + droll); // tells user their score
 
-				// All if loops below in this do while loop, determine who wins
-				// the game using various cases
+				// All if loops below for this button determine who wins
+				// the game using various cases and resets value to zero 
 				if (droll == 21) {
 					myTextField.setText(" Congratulations! You Win! " + " The computer had : " + drollcomp
 							+ " Your score is: " + droll);
@@ -632,9 +203,12 @@ static DieJava die2 = new DieJava(6); // creates a new variable die2 of the die
 					droll = 0;
 					drollcomp = 0;
 				}
-
-				// All if loops below to the beginning of the DieJava class also
-				// determine who wins
+				if (droll > 21 && drollcomp < 21 ) {
+					myTextField.setText(
+							" Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll);
+					droll = 0;
+					drollcomp = 0;
+				}
 				if (droll > 21 && drollcomp < 21) {
 					myTextField.setText(
 							" Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll);
@@ -654,10 +228,13 @@ static DieJava die2 = new DieJava(6); // creates a new variable die2 of the die
 					drollcomp = 0;
 				}
 				if (droll > 21 && drollcomp > 21 && drollcomp > droll) {
-					myTextField.setName(" Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll);
+					myTextField.setName(
+							" Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll);
 					droll = 0;
 					drollcomp = 0;
 				}
+
+			} else {
 				if (droll > drollcomp && droll < 21) {
 					myTextField.setText(" Congratulations! You Win! " + " The computer had : " + drollcomp
 							+ " Your score is: " + droll);
@@ -680,12 +257,38 @@ static DieJava die2 = new DieJava(6); // creates a new variable die2 of the die
 					myTextField.setText(" Both scores are " + droll + " it's a draw! ");
 					droll = 0;
 					drollcomp = 0;
-				} else {
 					if (droll < drollcomp) {
 						myTextField.setText("Congratulations! You win!");
 						droll = 0;
 						drollcomp = 0;
 					}
+				}
+			}
+			// All if loops below determine the winner if the user presses the "Press to stop" button
+			if (eventSource.getText().equals("Press to stop")) {
+				if (droll > drollcomp && droll < 21) {
+					myTextField.setText(" Congratulations! You Win! " + " The computer had : " + drollcomp
+							+ " Your score is: " + droll);
+					droll = 0;
+					drollcomp = 0;
+				}
+				if (droll < drollcomp && droll < 21) {
+					myTextField.setText(
+							" Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll);
+					droll = 0;
+					drollcomp = 0;
+				}
+				if (droll > drollcomp && droll < 21 && drollcomp < 21) {
+					myTextField.setText(" Congratulations! You Win! " + " The computer had : " + drollcomp
+							+ " Your score is: " + droll);
+					droll = 0;
+					drollcomp = 0;
+				}
+				if (droll < drollcomp && droll < 21 && drollcomp < 21) {
+					myTextField.setText(
+							" Sorry! You lose! " + " The computer had : " + drollcomp + " Your score is: " + droll);
+					droll = 0;
+					drollcomp = 0;
 				}
 			}
 		}
