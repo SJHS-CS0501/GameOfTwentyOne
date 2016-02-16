@@ -10,16 +10,16 @@ import javax.swing.*;
  */
 public class GameOfTwentyOne {
 
+	static JFrame frame = new JFrame("Game of Twenty-One"); // new JFrame
+	static Die rollDie = new Die(6); // creating new Die object
+	static GridBagConstraints c = new GridBagConstraints();
+	static GridBagLayout layout = new GridBagLayout();
+	static int userTotal = 0; // user's total
+	static int compTotal = 0; // computer's total
 	static JLabel label;
 	static JLabel die;
 	static JButton roll;
 	static JButton no;
-	static GridBagLayout layout = new GridBagLayout();
-	static JFrame frame = new JFrame("Game of Twenty-One"); // new JFrame
-	static int userTotal = 0; // user's total
-	static int compTotal = 0; // computer's total
-	static Die rollDie = new Die(6); // creating new Die object
-	static GridBagConstraints c = new GridBagConstraints();
 
 	/**
 	 * This is the main method for the GameOfTwentyOne program.
@@ -98,15 +98,12 @@ public class GameOfTwentyOne {
 
 	/**
 	 * ActionListener will react to each button click
-	 * 
 	 * @author Julianna Nichols
 	 */
 	static class Listener implements ActionListener {
 		/**
 		 * If "Roll" button is clicked, rolls die If "No" button is clicked,
 		 * compares computer's total to user's total
-		 * 
-		 * @return
 		 */
 		public void actionPerformed(ActionEvent e) {
 			JButton eventSource = (JButton) e.getSource();
