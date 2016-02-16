@@ -10,6 +10,8 @@ import javax.swing.*;
 public class GameOfTwentyOne {
 	
 	static JLabel label;
+	static ImageIcon firstDie;
+	static ImageIcon secondDie;
 	static JLabel die;
     static JButton roll;
     static JButton no;
@@ -19,6 +21,7 @@ public class GameOfTwentyOne {
 	static int compTotal = 0; //computer's total
 	static Die rollDie = new Die(6); //creating new Die object
 	static GridBagConstraints c = new GridBagConstraints();
+	ImageIcon dieIcon = new ImageIcon();
 
 	/**
 	 * This is the main method for the GameOfTwentyOne program.
@@ -113,35 +116,64 @@ public class GameOfTwentyOne {
 
 				rollDie.roll(); // first die for user
 				userTotal += rollDie.getValue();
-				c.fill = GridBagConstraints.BOTH;
-				c.weightx = 0.2; // resizing behavior (column)
-				c.weighty = 0.2; // resizing behavior (row)
-				c.gridx = 1; // second column
-				c.gridy = 0; // first row
-				c.gridwidth = 1; // take up one column
-				die = new JLabel("You rolled an " + rollDie.getValue() + "!");
-				die.setForeground(Color.BLACK);
-				die.setFont(new Font("TimesRoman", Font.PLAIN, 24));
-				frame.add(die, c);
+				
+				switch (rollDie.getValue()) {
+				case 1:
+					firstDie = new ImageIcon("dice1.jpg");
+					break;
+				case 2:
+					firstDie = new ImageIcon("dice2.jpg");
+					break;
+				case 3:
+					firstDie = new ImageIcon("dice3.jpg");
+					break;
+				case 4:
+					firstDie = new ImageIcon("dice4.jpg");
+					break;
+				case 5:
+					firstDie = new ImageIcon("dice5.jpg");
+					break;
+				case 6:
+					firstDie = new ImageIcon("dice6.jpg");
+					break;
+				}
+				
+				die = new JLabel(new ImageIcon( "dice1.jpg" ));
+				frame.add(die);
 
 				rollDie.roll(); // second die for user
-				userTotal += rollDie.getValue();
-				c.fill = GridBagConstraints.BOTH;
-				c.weightx = 0.2; // resizing behavior (column)
-				c.weighty = 0.2; // resizing behavior (row)
-				c.gridx = 2; // third column
-				c.gridy = 0; // first row
-				c.gridwidth = 1; // take up one column
-				label = new JLabel("You rolled an " + rollDie.getValue() + "! Roll again?");
-				label.setForeground(Color.BLACK);
-				label.setFont(new Font("TimesRoman", Font.PLAIN, 24));
-				frame.add(label, c);
+				userTotal += rollDie.getValue();				
+				
+				switch (rollDie.getValue()) {
+				case 1:
+					secondDie = new ImageIcon("dice1.jpg");
+					break;
+				case 2:
+					secondDie = new ImageIcon("dice2.jpg");
+					break;
+				case 3:
+					secondDie = new ImageIcon("dice3.jpg");
+					break;
+				case 4:
+					secondDie = new ImageIcon("dice4.jpg");
+					break;
+				case 5:
+					secondDie = new ImageIcon("dice5.jpg");
+					break;
+				case 6:
+					secondDie = new ImageIcon("dice6.jpg");
+					break;
+				}
+				
+				
+				label.setIcon(secondDie);
+				
 			}
 			
 			if(eventSource.getText().equals("No")) {
 				
-				label.setVisible(false);
 				die.setVisible(false);
+				label.setVisible(false);
 				roll.setVisible(false);
 				no.setVisible(false);
 				
