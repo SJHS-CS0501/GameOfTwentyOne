@@ -40,17 +40,11 @@ public class GameOfTwentyOne {
 		layout = new GridBagLayout(); // used GridBag layout
 	    frame.setLayout( layout );
 	        
-	    GridBagConstraints c = new GridBagConstraints(); // setting contraints for a while
+	    GridBagConstraints c = new GridBagConstraints(); // setting constraints for a while
 	    c.fill = GridBagConstraints.BOTH;
 	        
 	    c.weightx = 0.0;
 	    c.gridwidth = GridBagConstraints.RELATIVE;
-	    
-        // this doesn't actually work right now because it gets written over later
-	    label = new JLabel( "Let's play a Game of 21! It's like blackjack but with simulated dice!" );
-	    label.setFont( new Font("TimesRoman", Font.PLAIN, 18) );
-        layout.setConstraints( label, c );
-	    frame.add( label );
         
 	    // adding roll again button and its constraints
 	    c.gridwidth = GridBagConstraints.RELATIVE;
@@ -154,11 +148,6 @@ public class GameOfTwentyOne {
 	            		} else if( computer > 21 && total > 21 ){
 	            			otherLabel.setText( "We both lose!" ); // everyone is sad
 	            		} break;
-	            	//case  "Quit":
-	            	//	System.out.println( "You won " + wins + " out of " + count + " games!" );
-	            	//	System.out.println( "Goodbye!" );
-	            	//	System.exit(0);
-	            	//break;
 	            }
 	      } 
 	 }
