@@ -238,35 +238,30 @@ public class GameOfTwentyOneGUI {
 				myLabel.setText("Your current score is: " + dieRoll);
 				//These "if" statements stop the game if the user and/or computer reach or exceed 21.
 				if( dieRoll == 21 && computerDieRoll != 21 ) {
-					ctr++;
 					myLabel.setText("YOU WIN!!!!!!! The computer had: " + computerDieRoll + " You had: " + dieRoll + " Would you like to play again? If so, press HIT ME");
 					//System.exit(0);
 					dieRoll = 0;
 					computerDieRoll = 0;
 				}
 				if( dieRoll != 21 && computerDieRoll == 21 ) {
-					ctrTwo++;
 					myLabel.setText("Better luck next time! The computer had: " + computerDieRoll + " You had: " + dieRoll + " Would you like to play again? If so, press HIT ME");
 					//System.exit(0);
 					dieRoll = 0;
 					computerDieRoll = 0;
 				}
 				if( dieRoll == 21 && computerDieRoll == 21 ) {
-					ctrThree++;
 					myLabel.setText("Good game! It was a draw.  You both had: " + dieRoll + " Would you like to play again? If so, press HIT ME");
 					//System.exit(0);
 					dieRoll = 0;
 					computerDieRoll = 0;
 				}
 				if( dieRoll < 21 && computerDieRoll > 21 ) {
-					ctr++;
 					myLabel.setText("YOU WIN!!!!!!! The computer had: " + computerDieRoll + " You had: " + dieRoll + " Would you like to play again? If so, press HIT ME");
 					//System.exit(0);
 					dieRoll = 0;
 					computerDieRoll = 0;
 				}
 				if( dieRoll > 21 && computerDieRoll < 21 ) {
-					ctrTwo++;
 					myLabel.setText("Better luck next time! The computer had: " + computerDieRoll + " You had: " + dieRoll + " Would you like to play again? If so, press HIT ME");
 					//System.exit(0);
 					dieRoll = 0;
@@ -274,21 +269,18 @@ public class GameOfTwentyOneGUI {
 				}
 				
 				if( dieRoll > 21 && computerDieRoll > 21 && dieRoll > computerDieRoll ) {
-					ctrTwo++;
 					myLabel.setText("Better luck next time! The computer had: " + computerDieRoll + " You had: " + dieRoll + " Would you like to play again? If so, press HIT ME");
 					//System.exit(0);
 					dieRoll = 0;
 					computerDieRoll = 0;
 				}
 				if( dieRoll > 21 && computerDieRoll > 21 && computerDieRoll > dieRoll ) {
-					ctr++;
 					myLabel.setText("YOU WIN!!!!!!! The computer had: " + computerDieRoll + " You had: " + dieRoll + " Would you like to play again? If so, press HIT ME");
 					//System.exit(0);
 					dieRoll = 0;
 					computerDieRoll = 0;
 				}
 				if( dieRoll > 21 && computerDieRoll > 21 && computerDieRoll == dieRoll ) {
-					ctrThree++;
 					myLabel.setText("Good game! It was a draw.  You both had: " + dieRoll + " Would you like to play again? If so, press HIT ME");
 					//System.exit(0);
 					dieRoll = 0;
@@ -297,7 +289,6 @@ public class GameOfTwentyOneGUI {
 			} else if (eventSource.getText().equals("FREEZE")) {
 				//These "if" statements are used after the user freezes to determine who is closer to 21 at that point without going over.
 				if( dieRoll == 21 && computerDieRoll != 21 ) {
-					ctr++;
 					myLabel.setText("YOU WIN!!!!!!! The computer had: " + computerDieRoll + " You had: " + dieRoll + " Would you like to play again? If so, press HIT ME");
 					//System.exit(0);
 					dieRoll = 0;
@@ -311,14 +302,12 @@ public class GameOfTwentyOneGUI {
 					computerDieRoll = 0;
 				}
 				if( dieRoll == 21 && computerDieRoll == 21 ) {
-					ctrThree++;
 					myLabel.setText("Good game! It was a draw.  You both had: " + dieRoll + " Would you like to play again? If so, press HIT ME");
 					//System.exit(0);
 					dieRoll = 0;
 					computerDieRoll = 0;
 				}
 				if( dieRoll < 21 && computerDieRoll > 21 ) {
-					ctr++;
 					myLabel.setText("YOU WIN!!!!!!! The computer had: " + computerDieRoll + " You had: " + dieRoll + " Would you like to play again? If so, press HIT ME");
 					//System.exit(0);
 					dieRoll = 0;
@@ -326,35 +315,30 @@ public class GameOfTwentyOneGUI {
 				}
 				
 				if( dieRoll > 21 && computerDieRoll < 21 ) {
-					ctrTwo++;
 					myLabel.setText("Better luck next time! The computer had: " + computerDieRoll + " You had: " + dieRoll + " Would you like to play again? If so, press HIT ME");
 					//System.exit(0);
 					dieRoll = 0;
 					computerDieRoll = 0;
 				}
 				if( dieRoll > 21 && computerDieRoll > 21 && dieRoll > computerDieRoll ) {
-					ctrTwo++;
 					myLabel.setText("Better luck next time! The computer had: " + computerDieRoll + " You had: " + dieRoll + " Would you like to play again? If so, press HIT ME");
 					//System.exit(0);
 					dieRoll = 0;
 					computerDieRoll = 0;
 				}
 				if( dieRoll > 21 && computerDieRoll > 21 && computerDieRoll > dieRoll ) {
-					ctr++;
 					myLabel.setText("YOU WIN!!!!!!! The computer had: " + computerDieRoll + " You had: " + dieRoll + " Would you like to play again? If so, press HIT ME");
 					//System.exit(0);
 					dieRoll = 0;
 					computerDieRoll = 0;
 				}
 				if( dieRoll < computerDieRoll && computerDieRoll < 21 ) {
-					ctrTwo++;
 					myLabel.setText("Better luck next time! The computer had: " + computerDieRoll + " You had: " + dieRoll + " Would you like to play again? If so, press HIT ME");
 					//System.exit(0);
 					dieRoll = 0;
 					computerDieRoll = 0;
 				}
 				if( computerDieRoll < dieRoll && dieRoll < 21 ) {
-					ctr++;
 					myLabel.setText("YOU WIN!!!!!!! The computer had: " + computerDieRoll + " You had: " + dieRoll + " Would you like to play again? If so, press HIT ME");
 					//System.exit(0);
 					dieRoll = 0;
