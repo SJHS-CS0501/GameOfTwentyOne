@@ -88,8 +88,7 @@ public class GameOfTwentyOne {
 		computer += DieTwo.getValue(); // secret dice rolls for computer
 	    
 
-	    label.setText( "You're total is " + total +"." ); // telling people their score 
-	    
+	    label = new JLabel( "You're total is " + total +"." ); // telling people their score
 	    label.setFont( new Font("TimesRoman", Font.PLAIN, 18) );
         layout.setConstraints( label, c );
         frame.add( label );
