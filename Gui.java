@@ -178,7 +178,7 @@ static class MyListener implements ActionListener
      }//if myButton2 = source end
      if(source2 ==myButton2)
      {  
-        System.out.println("Button2 Clicked...
+        System.out.println("Button2 Clicked...");
         Flag1=true;
      }//source == my button2 end
      if(source3==myButton3)
