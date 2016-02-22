@@ -26,8 +26,7 @@ public class GameofTwentyone
     short pw = 0;                               //amount of player wins
     short cw = 0;                               //amount of computer wins
     Random Ran = new Random();
-    int x = Ran.nextInt(5);
-    
+    int x = Ran.nextInt(1, 2, 3, 4, 5, 6);
     
         JFrame myFrame = new JFrame("Game of 21");
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -145,10 +144,8 @@ public class GameofTwentyone
         
         
         //frame packs
-        myFrame.pack();
         myFrame.setSize( myFrame.getPreferredSize() );
-        
-        
+        myFrame.pack();
         
   }//main end
 }//end of class
